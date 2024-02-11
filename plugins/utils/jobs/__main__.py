@@ -8,7 +8,7 @@ async def gtofertas_(m: Message):
         return
     try:
         id, time, max_messages = m.filtered_input_str.split(maxsplit=1)
-    except IndexError:
+    except ValueError:
         return await m.edit("Low Arguments!")
     message_reply = int(id)
     message_count = 0
