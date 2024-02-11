@@ -12,7 +12,7 @@
 import asyncio
 from collections import deque
 
-from pyrogram.errors import FloodWait
+from hydrogram.errors import FloodWait
 
 from userge import userge, Message, get_collection
 

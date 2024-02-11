@@ -8,12 +8,12 @@
 
 import asyncio
 
-from pyrogram.errors.exceptions.bad_request_400 import (
+from hydrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired,
     UserAdminInvalid,
     ChannelInvalid,
 )
-from pyrogram.types import ChatPermissions
+from hydrogram.types import ChatPermissions
 
 from userge import userge, Message, get_collection, filters
 from ...builtin import sudo

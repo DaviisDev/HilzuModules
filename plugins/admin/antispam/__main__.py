@@ -14,9 +14,9 @@ from typing import Optional, Tuple
 import aiohttp
 import spamwatch
 from UsergeAntiSpamApi import Client
-from pyrogram.errors.exceptions.bad_request_400 import (
+from hydrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired, UserAdminInvalid, PeerIdInvalid)
-from pyrogram.types import User, Chat
+from hydrogram.types import User, Chat
 
 from userge import userge, Message, get_collection, filters, pool
 from .. import antispam

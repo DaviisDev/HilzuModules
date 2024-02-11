@@ -10,7 +10,7 @@
 
 import os
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, filters, config, get_collection
 from ...utils import ocr

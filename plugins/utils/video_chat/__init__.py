@@ -10,8 +10,8 @@ import os
 import logging
 from typing import List, Union
 
-from pyrogram import Client
-from pyrogram.types import Message as RawMessage
+from hydrogram import Client
+from hydrogram.types import Message as RawMessage
 from pytgcalls import PyTgCalls
 
 from userge import userge, config
@@ -32,7 +32,7 @@ if VC_SESSION:
         session_string=VC_SESSION)
     VC_CLIENT.storage.session_string = VC_SESSION
 else:
-    userge.__class__.__module__ = 'pyrogram.client'
+    userge.__class__.__module__ = 'hydrogram.client'
     VC_CLIENT = userge
 
 call = PyTgCalls(VC_CLIENT, overload_quiet_mode=True)

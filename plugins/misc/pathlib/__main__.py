@@ -22,7 +22,7 @@ from typing import Union, List, Tuple, Sequence
 from zipfile import ZipFile, is_zipfile
 
 from rarfile import RarFile, is_rarfile
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config, pool
 from userge.utils import humanbytes, time_formatter, sort_file_name_key

@@ -10,7 +10,7 @@
 
 import asyncio
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge
 

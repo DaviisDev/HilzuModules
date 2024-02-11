@@ -9,7 +9,7 @@
 from datetime import datetime
 
 from pytz import timezone
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message
 from . import COUNTRY_CITY

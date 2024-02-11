@@ -1,7 +1,7 @@
 # Rewrote with experimental bleck magik
 # code-rgb
 
-from pyrogram.errors import YouBlockedUser
+from hydrogram.errors import YouBlockedUser
 
 from userge import Message, userge
 from userge.utils.exceptions import StopConversation

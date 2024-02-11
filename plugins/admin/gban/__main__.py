@@ -9,9 +9,9 @@
 import asyncio
 from typing import AsyncGenerator, Tuple
 
-from pyrogram.errors.exceptions.bad_request_400 import (
+from hydrogram.errors.exceptions.bad_request_400 import (
     ChatAdminRequired, UserAdminInvalid, ChannelInvalid)
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, get_collection
 from .. import gban

@@ -14,8 +14,8 @@ import stagger
 from PIL import Image
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from pyrogram.errors import FloodWait
-from pyrogram import enums
+from hydrogram.errors import FloodWait
+from hydrogram import enums
 
 from userge import userge, Message
 from userge.utils import progress, take_screen_shot, humanbytes, sort_file_name_key

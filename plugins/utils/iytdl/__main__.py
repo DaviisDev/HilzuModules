@@ -9,9 +9,9 @@ import re
 from iytdl import main
 from uuid import uuid4
 
-from pyrogram import filters
-from pyrogram.errors import MessageIdInvalid, MessageNotModified
-from pyrogram.types import (
+from hydrogram import filters
+from hydrogram.errors import MessageIdInvalid, MessageNotModified
+from hydrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     CallbackQuery,

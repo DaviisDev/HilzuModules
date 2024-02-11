@@ -16,7 +16,7 @@ from datetime import datetime
 
 from removebg import RemoveBg
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, config, Message
 from userge.utils import progress

@@ -16,8 +16,8 @@ import aiohttp
 import spamwatch
 from UsergeAntiSpamApi import Client
 
-from pyrogram.types import User
-from pyrogram import enums
+from hydrogram.types import User
+from hydrogram import enums
 
 from userge import userge, Message, get_collection
 from .. import info

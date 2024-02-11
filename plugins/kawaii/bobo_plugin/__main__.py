@@ -5,7 +5,7 @@
 # ==
 
 
-from pyrogram.errors import YouBlockedUser
+from hydrogram.errors import YouBlockedUser
 
 from userge import Message, userge
 

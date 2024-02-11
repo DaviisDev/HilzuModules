@@ -8,7 +8,7 @@ import aiohttp
 
 from html import escape
 
-from pyrogram.enums import ParseMode
+from hydrogram.enums import ParseMode
 
 from userge import Message, userge
 

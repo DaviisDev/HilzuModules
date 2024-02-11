@@ -12,11 +12,11 @@ import random
 from PIL import Image
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from pyrogram import emoji as pyro_emojis
-from pyrogram.errors import YouBlockedUser, StickersetInvalid
-from pyrogram.raw.functions.stickers import CreateStickerSet, AddStickerToSet
-from pyrogram.raw.functions.messages import GetStickerSet, UploadMedia
-from pyrogram.raw.types import (
+from hydrogram import emoji as pyro_emojis
+from hydrogram.errors import YouBlockedUser, StickersetInvalid
+from hydrogram.raw.functions.stickers import CreateStickerSet, AddStickerToSet
+from hydrogram.raw.functions.messages import GetStickerSet, UploadMedia
+from hydrogram.raw.types import (
     InputStickerSetShortName, InputStickerSetItem,
     InputMediaUploadedDocument, DocumentAttributeFilename, InputDocument)
 

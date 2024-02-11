@@ -14,13 +14,13 @@ import asyncio
 import html
 import os
 
-from pyrogram.errors.exceptions.bad_request_400 import (
+from hydrogram.errors.exceptions.bad_request_400 import (
     BadRequest,
     UsernameOccupied,
     UsernameInvalid,
     UsernameNotOccupied,
     PeerIdInvalid)
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, config, Message
 

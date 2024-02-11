@@ -12,15 +12,15 @@ import time
 import random
 import asyncio
 
-from pyrogram import ContinuePropagation
-from pyrogram.handlers import CallbackQueryHandler
-from pyrogram.errors import ChannelInvalid, ChannelPrivate
-from pyrogram.raw.base import Message as BaseMessage
-from pyrogram.raw.functions.phone import (GetGroupCall,
+from hydrogram import ContinuePropagation
+from hydrogram.handlers import CallbackQueryHandler
+from hydrogram.errors import ChannelInvalid, ChannelPrivate
+from hydrogram.raw.base import Message as BaseMessage
+from hydrogram.raw.functions.phone import (GetGroupCall,
                                           GetGroupCallJoinAs,
                                           CreateGroupCall)
-from pyrogram.raw.types import UpdateGroupCallParticipants, InputGroupCall
-from pyrogram import enums
+from hydrogram.raw.types import UpdateGroupCallParticipants, InputGroupCall
+from hydrogram import enums
 
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types import (

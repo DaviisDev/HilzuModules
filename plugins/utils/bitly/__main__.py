@@ -9,7 +9,7 @@
 # By @Krishna_Singhal
 
 import gdshortener
-from pyrogram.errors import YouBlockedUser
+from hydrogram.errors import YouBlockedUser
 
 from userge import userge, Message
 from userge.utils.exceptions import StopConversation

@@ -12,10 +12,10 @@ import datetime
 from typing import List, Dict, Tuple, Optional
 
 from emoji import get_emoji_regexp
-from pyrogram.errors import (
+from hydrogram.errors import (
     FloodWait, UserAdminInvalid, UsernameInvalid, PeerIdInvalid, UserIdInvalid)
-from pyrogram.types import ChatPermissions, Chat, ChatPrivileges
-from pyrogram import enums
+from hydrogram.types import ChatPermissions, Chat, ChatPrivileges
+from hydrogram import enums
 
 from userge import userge, Message, get_collection, filters
 from .. import gadmin
@@ -161,7 +161,7 @@ async def ban_user(message: Message):
         try:
             user = await message.client.get_users(user_id)
             body = f"USER: [{user.first_name}](tg://user?id={user_id}) (`{user_id}`)"
-        # pyrogram raises an IndexError if a channel id / username is passed.
+        # hydrogram raises an IndexError if a channel id / username is passed.
         except IndexError:
             channel = await message.client.get_chat(user_id)
             body = f"CHANNEL: {channel.title} (`{channel.id}`)"
@@ -226,7 +226,7 @@ async def unban_usr(message: Message):
         try:
             user = await message.client.get_users(user_id)
             body = f"USER: [{user.first_name}](tg://user?id={user_id}) (`{user_id}`)"
-        # pyrogram raises an IndexError if a channel id / username is passed.
+        # hydrogram raises an IndexError if a channel id / username is passed.
         except IndexError:
             channel = await message.client.get_chat(user_id)
             body = f"CHANNEL: {channel.title} (`{channel.id}`)"

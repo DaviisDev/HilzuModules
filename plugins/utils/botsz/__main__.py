@@ -17,7 +17,7 @@ from datetime import datetime
 import pytz
 
 from userge import userge, Message
-from pyrogram import enums
+from hydrogram import enums
 
 
 @userge.on_cmd(

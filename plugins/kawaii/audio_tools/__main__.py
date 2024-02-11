@@ -8,7 +8,7 @@
 
 import os
 
-from pyrogram.enums import MessageMediaType
+from hydrogram.enums import MessageMediaType
 
 from userge import userge, Message, config
 from userge.utils import runcmd

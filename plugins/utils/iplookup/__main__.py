@@ -11,7 +11,7 @@
 # Modded from @AHToolsBot by @Discovery_Updates
 
 import aiohttp
-from pyrogram import enums
+from hydrogram import enums
 from userge import userge, Message
 
 

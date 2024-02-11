@@ -6,11 +6,11 @@
 
 from uuid import uuid4
 
-from pyrogram.types import (
+from hydrogram.types import (
     CallbackQuery, InlineQuery, InlineKeyboardButton,
     InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardMarkup)
-from pyrogram.types import Message as PyroMessage
-from pyrogram import enums
+from hydrogram.types import Message as PyroMessage
+from hydrogram import enums
 
 from userge import userge, filters, config
 

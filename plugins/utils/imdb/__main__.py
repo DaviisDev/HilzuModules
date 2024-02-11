@@ -11,8 +11,8 @@ import os
 from urllib.parse import urlparse
 
 import requests
-from pyrogram import filters
-from pyrogram.types import (
+from hydrogram import filters
+from hydrogram.types import (
     CallbackQuery,
     InlineQuery,
     InlineQueryResultArticle,
@@ -20,7 +20,7 @@ from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
 )
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config, pool
 from .. import imdb

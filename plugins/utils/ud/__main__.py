@@ -11,13 +11,13 @@ from typing import List
 from urllib.parse import quote
 
 import aiohttp
-from pyrogram import filters
-from pyrogram.types import (
+from hydrogram import filters
+from hydrogram.types import (
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent
 )
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config
 from ..ud import URBAN_API_URL

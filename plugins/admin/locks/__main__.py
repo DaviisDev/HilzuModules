@@ -9,12 +9,12 @@
 import os
 from typing import Tuple, Optional
 
-from pyrogram.errors import ChatNotModified
-from pyrogram.raw.functions.channels import GetFullChannel
-from pyrogram.raw.functions.messages import GetFullChat, EditChatDefaultBannedRights
-from pyrogram.raw.types import InputPeerChannel, ChatBannedRights
-from pyrogram.types import ChatPermissions
-from pyrogram import enums
+from hydrogram.errors import ChatNotModified
+from hydrogram.raw.functions.channels import GetFullChannel
+from hydrogram.raw.functions.messages import GetFullChat, EditChatDefaultBannedRights
+from hydrogram.raw.types import InputPeerChannel, ChatBannedRights
+from hydrogram.types import ChatPermissions
+from hydrogram import enums
 
 from userge import userge, Message
 

@@ -17,7 +17,7 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, pool
 from userge.utils import humanbytes

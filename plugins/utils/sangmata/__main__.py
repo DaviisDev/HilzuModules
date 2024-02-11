@@ -8,7 +8,7 @@
 
 # By @Krishna_Singhal
 
-from pyrogram.errors.exceptions.bad_request_400 import YouBlockedUser
+from hydrogram.errors.exceptions.bad_request_400 import YouBlockedUser
 
 from userge import userge, Message
 from userge.utils.exceptions import StopConversation

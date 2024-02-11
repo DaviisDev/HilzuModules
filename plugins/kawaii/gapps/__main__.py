@@ -11,9 +11,9 @@ import re
 from bs4 import BeautifulSoup
 from requests import get
 
-from pyrogram import filters
-from pyrogram.errors import MessageIdInvalid, MessageNotModified
-from pyrogram.types import CallbackQuery, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardButton, InlineKeyboardMarkup
+from hydrogram import filters
+from hydrogram.errors import MessageIdInvalid, MessageNotModified
+from hydrogram.types import CallbackQuery, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Message, userge, config as Config
 from ...builtin import sudo

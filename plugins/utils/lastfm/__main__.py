@@ -9,7 +9,7 @@
 
 import aiohttp
 
-from pyrogram.enums import ParseMode
+from hydrogram.enums import ParseMode
 from userge import config, Message, userge
 from userge.utils import get_response
 from .. import lastfm

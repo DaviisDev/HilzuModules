@@ -8,7 +8,7 @@
 
 import os
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config
 from .. import ocr

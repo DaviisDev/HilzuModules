@@ -12,8 +12,8 @@ import shutil
 
 from PIL import Image
 from google_images_search import GoogleImagesSearch as GIS
-from pyrogram import enums
-from pyrogram.types import InputMediaPhoto
+from hydrogram import enums
+from hydrogram.types import InputMediaPhoto
 
 from userge import userge, Message
 from .. import google_img as gimg

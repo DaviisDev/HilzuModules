@@ -10,7 +10,7 @@
 
 import os
 
-from pyrogram.errors.exceptions.bad_request_400 import YouBlockedUser
+from hydrogram.errors.exceptions.bad_request_400 import YouBlockedUser
 
 from userge import userge, Message, config
 from userge.utils import take_screen_shot, runcmd

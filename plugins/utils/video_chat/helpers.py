@@ -7,8 +7,8 @@ from typing import Optional
 from pathlib import Path
 from traceback import format_exc
 
-from pyrogram.raw.types import GroupCall
-from pyrogram.errors import (
+from hydrogram.raw.types import GroupCall
+from hydrogram.errors import (
     ChatAdminRequired,
     UserAlreadyParticipant,
     UserBannedInChannel

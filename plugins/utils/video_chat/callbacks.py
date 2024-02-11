@@ -1,10 +1,10 @@
 import re
 
-from pyrogram.types import (InlineKeyboardMarkup,
+from hydrogram.types import (InlineKeyboardMarkup,
                             InlineKeyboardButton,
                             CallbackQuery,
                             Message as RawMessage)
-from pyrogram.errors import MessageNotModified, QueryIdInvalid
+from hydrogram.errors import MessageNotModified, QueryIdInvalid
 
 from userge import userge, filters, config
 from userge.utils.exceptions import StopConversation

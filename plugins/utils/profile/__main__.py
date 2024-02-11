@@ -14,8 +14,8 @@
 import os
 from datetime import datetime
 
-from pyrogram import enums
-from pyrogram.errors.exceptions.bad_request_400 import (
+from hydrogram import enums
+from hydrogram.errors.exceptions.bad_request_400 import (
     UsernameOccupied, AboutTooLong, UsernameNotOccupied, VideoFileInvalid)
 
 from userge import userge, config, Message

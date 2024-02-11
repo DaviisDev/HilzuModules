@@ -6,7 +6,7 @@
 #
 # ==
 
-from pyrogram.errors import MessageDeleteForbidden
+from hydrogram.errors import MessageDeleteForbidden
 
 from userge import userge, Message
 

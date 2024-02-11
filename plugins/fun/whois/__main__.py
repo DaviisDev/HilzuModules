@@ -8,8 +8,8 @@
 
 import os
 
-from pyrogram.errors.exceptions.bad_request_400 import BotMethodInvalid
-from pyrogram import enums
+from hydrogram.errors.exceptions.bad_request_400 import BotMethodInvalid
+from hydrogram import enums
 
 from userge import userge, Message
 

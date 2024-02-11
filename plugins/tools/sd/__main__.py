@@ -8,14 +8,14 @@
 
 import asyncio
 from userge import userge, Message
-from pyrogram.raw.types import (
+from hydrogram.raw.types import (
     UpdateReadChannelOutbox,
     UpdateReadHistoryOutbox,
     PeerUser,
     PeerChannel)
-from pyrogram.raw.base import Update, Peer
-from pyrogram import ContinuePropagation
-from pyrogram import enums
+from hydrogram.raw.base import Update, Peer
+from hydrogram import ContinuePropagation
+from hydrogram import enums
 
 MSGS = {}
 

@@ -10,7 +10,7 @@ import asyncio
 import time
 from random import choice, randint
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, filters, get_collection
 from userge.utils import time_formatter, get_custom_import_re, upload_media_tg

@@ -15,8 +15,8 @@ import time
 from typing import Optional, List, Dict
 
 import wget
-from pyrogram.errors import UserIsBlocked, FloodWait
-from pyrogram.types import (
+from hydrogram.errors import UserIsBlocked, FloodWait
+from hydrogram.types import (
     Message as PyroMessage, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 )
 

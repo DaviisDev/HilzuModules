@@ -11,7 +11,7 @@ import json
 import aiohttp
 from emoji import get_emoji_regexp
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message
 from .. import currency

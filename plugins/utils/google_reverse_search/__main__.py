@@ -13,7 +13,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config
 from userge.utils import take_screen_shot

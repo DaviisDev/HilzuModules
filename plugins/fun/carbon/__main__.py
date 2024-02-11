@@ -12,7 +12,7 @@ import random
 from urllib.parse import quote_plus
 
 import aiofiles
-from pyrogram.errors.exceptions.bad_request_400 import YouBlockedUser
+from hydrogram.errors.exceptions.bad_request_400 import YouBlockedUser
 from selenium import webdriver
 
 from userge import userge, Message, config

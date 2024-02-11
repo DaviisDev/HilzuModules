@@ -8,7 +8,7 @@
 
 # By @Krishna_Singhal
 
-from pyrogram.errors import BadRequest, ChannelInvalid, UserIsBot
+from hydrogram.errors import BadRequest, ChannelInvalid, UserIsBot
 
 from userge import userge, config, Message
 from userge.utils import parse_buttons as pb, get_file_id_of_media

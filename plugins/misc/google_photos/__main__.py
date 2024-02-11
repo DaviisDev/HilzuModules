@@ -25,7 +25,7 @@ import aiohttp
 from apiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, config
 from userge.plugins.misc.download import tg_download, url_download

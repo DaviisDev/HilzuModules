@@ -16,8 +16,8 @@ from typing import Tuple, Union
 from urllib.parse import unquote_plus
 
 from pySmartDL import SmartDL
-from pyrogram.types import Message as PyroMessage
-from pyrogram import enums
+from hydrogram.types import Message as PyroMessage
+from hydrogram import enums
 
 from userge import Message, config
 from userge.utils import progress, humanbytes, extract_entities

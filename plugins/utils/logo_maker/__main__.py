@@ -17,7 +17,7 @@ from typing import List, Tuple
 import aiofiles
 import aiohttp
 from bs4 import BeautifulSoup
-from pyrogram.types import InputMediaPhoto
+from hydrogram.types import InputMediaPhoto
 
 from userge import userge, Message
 

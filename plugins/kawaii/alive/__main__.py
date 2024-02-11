@@ -10,9 +10,9 @@ import asyncio
 from random import choice
 from . import UPSTREAM_REPO
 
-from pyrogram.errors import BadRequest, Forbidden
-from pyrogram import filters
-from pyrogram.types import (
+from hydrogram.errors import BadRequest, Forbidden
+from hydrogram import filters
+from hydrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,

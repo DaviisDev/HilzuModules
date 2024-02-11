@@ -9,8 +9,8 @@
 # All rights reserved.
 
 
-from pyrogram.errors import UserNotParticipant, ChannelPrivate
-from pyrogram import enums
+from hydrogram.errors import UserNotParticipant, ChannelPrivate
+from hydrogram import enums
 
 from userge import userge, Message
 

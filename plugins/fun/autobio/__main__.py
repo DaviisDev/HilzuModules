@@ -11,7 +11,7 @@
 import asyncio
 import time
 
-from pyrogram.errors import FloodWait
+from hydrogram.errors import FloodWait
 
 from userge import userge, Message, get_collection
 from .resources.quotes import ENGLISH_QUOTES, HINDI_QUOTES

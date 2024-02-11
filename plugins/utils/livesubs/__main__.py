@@ -12,8 +12,8 @@
 
 import asyncio
 
-from pyrogram.errors import FloodWait
-from pyrogram import enums
+from hydrogram.errors import FloodWait
+from hydrogram import enums
 
 from userge import userge, Message
 

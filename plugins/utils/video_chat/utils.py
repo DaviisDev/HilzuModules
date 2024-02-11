@@ -8,10 +8,10 @@ from typing import List, Tuple, Optional
 
 from youtubesearchpython import VideosSearch
 
-from pyrogram.types import (InlineKeyboardMarkup,
+from hydrogram.types import (InlineKeyboardMarkup,
                             InlineKeyboardButton,
                             CallbackQuery)
-from pyrogram import enums
+from hydrogram import enums
 
 from userge import userge, Message, pool
 from userge.utils import runcmd, time_formatter, get_custom_import_re

@@ -8,7 +8,7 @@
 import os
 from io import BytesIO
 
-from pyrogram.enums import ParseMode
+from hydrogram.enums import ParseMode
 from PIL import Image, ImageDraw, ImageFont
 from requests import get
 

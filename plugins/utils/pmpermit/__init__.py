@@ -6,7 +6,7 @@
 
 """ setup auto pm message """
 
-from pyrogram import filters
+from hydrogram import filters
 
 ALLOWED_CHATS = filters.chat([])
 

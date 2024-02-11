@@ -9,8 +9,8 @@
 import re
 import asyncio
 
-from pyrogram import filters
-from pyrogram.errors import PeerIdInvalid, FloodWait, UserBannedInChannel
+from hydrogram import filters
+from hydrogram.errors import PeerIdInvalid, FloodWait, UserBannedInChannel
 
 from userge import Message, get_collection, userge, config
 from ...builtin import sudo

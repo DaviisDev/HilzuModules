@@ -10,9 +10,9 @@ import asyncio
 from typing import Dict
 from uuid import uuid4
 
-from pyrogram.errors import BotInlineDisabled
-from pyrogram.enums import ChatType
-from pyrogram.types import (InlineKeyboardMarkup,
+from hydrogram.errors import BotInlineDisabled
+from hydrogram.enums import ChatType
+from hydrogram.types import (InlineKeyboardMarkup,
                             InlineKeyboardButton,
                             InlineQueryResultArticle,
                             InputTextMessageContent,

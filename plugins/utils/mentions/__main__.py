@@ -6,9 +6,9 @@
 #
 # ==
 
-from pyrogram.errors import PeerIdInvalid
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram import enums
+from hydrogram.errors import PeerIdInvalid
+from hydrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from hydrogram import enums
 
 from userge import userge, Message, config, filters, get_collection
 

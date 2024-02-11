@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 
 import pytz
 from apscheduler.jobstores.base import ConflictingIdError
-from pyrogram.errors import ChatAdminRequired, ChannelInvalid, ChannelPrivate, ChatNotModified
-from pyrogram.types import ChatPermissions
+from hydrogram.errors import ChatAdminRequired, ChannelInvalid, ChannelPrivate, ChatNotModified
+from hydrogram.types import ChatPermissions
 
 from userge import userge, Message
 from ..night_mode import scheduler, TZ

@@ -14,11 +14,11 @@ from typing import Dict, List, Tuple
 import feedparser
 import wget
 from dateutil import parser
-from pyrogram import enums
-from pyrogram.errors import (
+from hydrogram import enums
+from hydrogram.errors import (
     ChatWriteForbidden, ChannelPrivate, UserNotParticipant, ChatIdInvalid
 )
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from hydrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from userge import userge, Message, config, logging, get_collection, pool
 from userge.utils.exceptions import UsergeBotNotFound
