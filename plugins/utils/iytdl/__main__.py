@@ -4,11 +4,15 @@
 #
 # ==
 
+import os
 import re
 import json
 import asyncio
 import logging
 import requests
+import shutil
+import wget
+import tempfile
 
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import GeoRestrictedError, ExtractorError, DownloadError
@@ -25,6 +29,8 @@ from hydrogram.types import (
     InlineKeyboardMarkup,
     CallbackQuery,
     InputMediaPhoto,
+    InputMediaAudio,
+    InputMediaVideo,
     InlineQuery,
     InlineQueryResultPhoto,
     InlineQueryResultArticle,
@@ -319,6 +325,7 @@ if userge.has_bot:
     )
     async def iytdl_ub_cmd(m: Message):
         reply = m.reply_to_message
+        user_id = m.from_user.id
         query = None
         if m.input_str:
             query = m.input_str
@@ -347,11 +354,11 @@ if userge.has_bot:
                     [
                         [
                             InlineKeyboardButton(
-                                f"1/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|1")
+                                f"1/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|1|{user_id}")
                         ],
                         [
                             InlineKeyboardButton(
-                                "Download", callback_data=f"yt_gen|{i['id']}")
+                                "Download", callback_data=f"yt_gen|{i['id']}|{user_id}")
                         ]
                     ]
                 )
@@ -378,6 +385,7 @@ if userge.has_bot:
         callback = cq.data.split("|")
         search_key = callback[1]
         page = int(callback[2])
+        user_id = int(callback[3])
         query = YT_DB[search_key]
         search = await VideosSearch(query).next()
         i = search['result'][page]
@@ -389,9 +397,9 @@ if userge.has_bot:
         scroll_btn = [
             [
                 InlineKeyboardButton(
-                    f"Back", callback_data=f"ytdl_scroll|{search_key}|{page-1}"),
+                    f"Back", callback_data=f"ytdl_scroll|{search_key}|{page-1}|{user_id}"),
                 InlineKeyboardButton(
-                    f"{page+1}/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|{page+1}")
+                    f"{page+1}/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|{page+1}|{user_id}")
             ]
         ]
         if page == 0:
@@ -403,7 +411,7 @@ if userge.has_bot:
         btn = [
             [
                 InlineKeyboardButton(
-                    "Download", callback_data=f"yt_gen|{i['id']}")
+                    "Download", callback_data=f"yt_gen|{i['id']}|{user_id}")
             ]
         ]
         btn = InlineKeyboardMarkup(scroll_btn+btn)
@@ -411,21 +419,94 @@ if userge.has_bot:
 
     @userge.bot.on_callback_query(filters=filters.regex(pattern=r"yt_(gen|dl)\|(.*)"))
     @check_owner
-    async def ytdl_gendl_callback(cq: CallbackQuery):
-        callback = cq.data.split("|")
-        key = callback[1]
-        if callback[0] == "yt_gen":
-            x = await YT_DLP().get_download_button(key)
-            await cq.edit_message_caption(caption=x.caption, reply_markup=x.buttons)
-        else:
-            uid = callback[2]
-            type_ = callback[3]
-            if type_ == "a":
-                format_ = "audio"
+    async def ytdl_gendl_callback(cb: CallbackQuery):
+        inf = cb.data.split("|")
+        key = inf[1]
+        try:
+            if key[0] == "yt_gen":
+                user_id = inf[2]
+                x = (await YT_DLP().get_download_button(key, user_id))
+                await cb.edit_message_caption(caption=x.caption, reply_markup=x.buttons)
             else:
-                format_ = "video"
-            upload_key = await YT_DLP().downloader("https://www.youtube.com/watch?v="+key, format_, cq)
-            await ytdl.upload(userge.bot, upload_key, format_, cq, True)
+                uid = inf[2]
+                type_ = inf[4]
+                with tempfile.TemporaryDirectory() as tempdir:
+                    path_ = os.path.join(tempdir, "ytdl")
+                thumb = wget.download(await YT_DLP().get_ytthumb(key), Config.DOWN_PATH + "thumbnail.png")
+                if type_ == "a":
+                    format_ = "audio"
+                else:
+                    format_ = "video"
+
+                await cb.edit_message_caption(caption="<code>Downloading pls...</b>")
+
+                if format_ == "video":
+                    options = {
+                        "addmetadata": True,
+                        "geo_bypass": True,
+                        "nocheckcertificate": True,
+                        "outtmpl": os.path.join(path_, "%(title)s-%(format)s.%(ext)s"),
+                        "logger": logging,
+                        "format": uid,
+                        "writethumbnail": True,
+                        "prefer_ffmpeg": True,
+                        "postprocessors": [{"key": "FFmpegMetadata"}],
+                        "quiet": True,
+                        "logtostderr": True,
+                    }
+                    file, duration, title = (await YT_DLP().downloader(
+                        url=f"https://www.youtube.com/watch?v={key}", options=options
+                    ))
+
+                    
+                    await cb.edit_message_media(
+                        media=InputMediaVideo(
+                            media=file, duration=duration, caption=title, thumb=thumb
+                        )
+                    )
+
+                elif format_ == "audio":
+                    options = {
+                        "outtmpl": os.path.join(path_, "%(title)s-%(format)s.%(ext)s"),
+                        "logger": logging,
+                        "writethumbnail": True,
+                        "prefer_ffmpeg": True,
+                        "format": "bestaudio/best",
+                        "geo_bypass": True,
+                        "nocheckcertificate": True,
+                        "postprocessors": [
+                            {
+                                "key": "FFmpegExtractAudio",
+                                "preferredcodec": "mp3",
+                                "preferredquality": uid,
+                            },
+                            {"key": "EmbedThumbnail"},
+                            {"key": "FFmpegMetadata"},
+                        ],
+                        "quiet": True,
+                        "logtostderr": True,
+                    }
+                    file, duration, title = (await YT_DLP().downloader(
+                        url=f"https://www.youtube.com/watch?v={key}", options=options
+                    ))
+
+                    await cb.edit_message_caption(
+                        caption="<code>Uploading, Please Wait...</code>"
+                    )
+                    await cb.edit_message_media(
+                        media=InputMediaAudio(
+                            media=file, duration=duration, caption=title, thumb=thumb
+                        )
+                    )
+                else:
+                    await cb.answer("[Format Error] Fail in generate video in this format.", show_alert=True)
+                os.remove(thumb)
+                shutil.rmtree(tempdir)
+        except MessageNotModified:
+            return
+        except Exception as e:
+            logging.error(e)
+            return
 
     @userge.bot.on_inline_query(
         filters.create(
