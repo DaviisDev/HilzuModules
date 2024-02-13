@@ -5,9 +5,18 @@
 # ==
 
 import re
+import json
+import asyncio
+import logging
+import requests
 
-from iytdl import main
+from yt_dlp import YoutubeDL
+from yt_dlp.utils import GeoRestrictedError, ExtractorError, DownloadError
 from uuid import uuid4
+from typing import Callable, List, Any, Dict, Union
+from collections import defaultdict
+from functools import wraps, partial
+from youtubesearchpython.__future__ import VideosSearch
 
 from hydrogram import filters
 from hydrogram.errors import MessageIdInvalid, MessageNotModified
@@ -23,8 +32,260 @@ from hydrogram.types import (
 )
 
 from userge import Message, config as Config, userge
-from userge.utils import get_response
 from ...builtin import sudo
+
+
+YT = "https://www.youtube.com/"
+YT_VID_URL = YT + "watch?v="
+
+
+def aiowrap(func: Callable) -> Callable:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
+
+def sublists(input_list: List[Any], width: int = 3) -> List[List[Any]]:
+    """retuns a single list of multiple sublist of fixed width"""
+    return [input_list[x : x + width] for x in range(0, len(input_list), width)]
+          
+
+@aiowrap
+def extract_info(instance: YoutubeDL, url: str, download=True):
+    return instance.extract_info(url, download)
+
+def humanbytes(size: float) -> str:
+    """humanize size"""
+    if not size:
+        return ""
+    power = 1024
+    t_n = 0
+    power_dict = {0: " ", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
+    while size > power:
+        size /= power
+        t_n += 1
+    return "{:.2f} {}B".format(size, power_dict[t_n])
+
+class Buttons(InlineKeyboardMarkup):
+    def __init__(self, inline_keyboard: List[List["InlineKeyboardButton"]]):
+        super().__init__(inline_keyboard)
+
+    def __add__(self, extra: Union[str, int]) -> InlineKeyboardMarkup:
+        """Add extra Data to callback_data of every button
+
+        Parameters:
+        ----------
+            - extra (`Union[str, int]`): Extra data e.g A `key` or `user_id`.
+
+        Raises:
+        ------
+            `TypeError`
+
+        Returns:
+        -------
+            `InlineKeyboardMarkup`: Modified markup
+        """
+        if not isinstance(extra, (str, int)):
+            raise TypeError(
+                f"unsupported operand `extra` for + : '{type(extra)}' and '{type(self)}'"
+            )
+        ikb = self.inline_keyboard
+        cb_extra = f"-{extra}"
+        for row in ikb:
+            for btn in row:
+                if (
+                    (cb_data := btn.callback_data)
+                    and cb_data.startswith("yt_")
+                    and not cb_data.endswith(cb_extra)
+                ):
+                    cb_data += cb_extra
+                    btn.callback_data = cb_data[:64]  # limit: 1-64 bytes.
+        return InlineKeyboardMarkup(ikb)
+
+    def add(self, extra: Union[str, int]) -> InlineKeyboardMarkup:
+        """Add extra Data to callback_data of every button
+
+        Parameters:
+        ----------
+            - extra (`Union[str, int]`): Extra data e.g A `key` or `user_id`.
+
+        Raises:
+        ------
+            `TypeError`
+
+        Returns:
+        -------
+            `InlineKeyboardMarkup`: Modified markup
+        """
+        return self.__add__(extra)
+
+class SearchResult:
+    def __init__(
+        self,
+        key: str,
+        text: str,
+        image: str,
+        buttons: InlineKeyboardMarkup,
+    ) -> None:
+        self.key = key
+        self.buttons = Buttons(buttons.inline_keyboard)
+        self.caption = text
+        self.image_url = image
+
+    def __repr__(self) -> str:
+        out = self.__dict__.copy()
+        out["buttons"] = (
+            json.loads(str(btn)) if (btn := out.pop("buttons", None)) else None
+        )
+        return json.dumps(out, indent=4)
+
+class YT_DLP:
+    async def get_download_button(self, yt_id: str, user_id: int) -> SearchResult:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    "🥇 BEST - 🎥 MP4",
+                    callback_data=f"yt_dl|{yt_id}|mp4|{user_id}|v",
+                ),
+            ]
+        ]
+        best_audio_btn = [
+            [
+                InlineKeyboardButton(
+                    "🥇 BEST - 📀 320Kbps - MP3",
+                    callback_data=f"yt_dl|{yt_id}|mp3|{user_id}|a",
+                )
+            ]
+        ]
+
+        params = {"no-playlist": True, "quiet": True, "logtostderr": False}
+
+        try:
+            # //
+            vid_data = await extract_info(
+                YoutubeDL(params), f"{YT_VID_URL}{yt_id}", download=False
+            )
+        except ExtractorError:
+            vid_data = None
+            buttons += best_audio_btn
+        else:
+            # ------------------------------------------------ #
+            qual_dict = defaultdict(lambda: defaultdict(int))
+            qual_list = ("1440p", "1080p", "720p", "480p", "360p", "240p", "144p")
+            audio_dict: Dict[int, str] = {}
+            # ------------------------------------------------ #
+            for video in vid_data["formats"]:
+                fr_note = video.get("format_note")
+                fr_id = video.get("format_id")
+                fr_size = video.get("filesize")
+                if video.get("ext") == "mp4":
+                    for frmt_ in qual_list:
+                        if fr_note in (frmt_, frmt_ + "140"):
+                            qual_dict[frmt_][fr_id] = fr_size
+                if video.get("acodec") != "none":
+                    bitrrate = video.get("abr")
+                    if bitrrate == (0 or "None"):
+                        pass
+                    else:
+                        audio_dict[
+                            bitrrate
+                        ] = f"📀 {bitrrate}Kbps ({humanbytes(fr_size) or 'N/A'})"
+            audio_dict = await self.delete_none(audio_dict)
+            video_btns: List[InlineKeyboardButton] = []
+            for frmt in qual_list:
+                frmt_dict = qual_dict[frmt]
+                if len(frmt_dict) != 0:
+                    frmt_id = sorted(list(frmt_dict))[-1]
+                    frmt_size = humanbytes(frmt_dict.get(frmt_id)) or "N/A"
+                    video_btns.append(
+                        InlineKeyboardButton(
+                            f"🎥 {frmt} ({frmt_size})",
+                            callback_data=f"yt_dl|{yt_id}|{frmt_id}+140|{user_id}|v",
+                        )
+                    )
+            buttons += sublists(video_btns, width=2)
+            buttons += best_audio_btn
+            buttons += sublists(
+                list(
+                    map(
+                        lambda x: InlineKeyboardButton(
+                            audio_dict[x], callback_data=f"yt_dl|{yt_id}|{x}|{user_id}|a"
+                        ),
+                        sorted(audio_dict.keys(), reverse=True),
+                    )
+                ),
+                width=2,
+            )
+
+        return SearchResult(
+            yt_id,
+            (
+                f"<a href={YT_VID_URL}{yt_id}>{vid_data.get('title')}</a>"
+                if vid_data
+                else ""
+            ),
+            vid_data.get("thumbnail")
+            if vid_data
+            else "https://s.clipartkey.com/mpngs/s/108-1089451_non-copyright-youtube-logo-copyright-free-youtube-logo.png",
+            InlineKeyboardMarkup(buttons),
+        )
+
+    @aiowrap
+    def delete_none(self, _dict):
+        """Delete None values recursively from all of the dictionaries, tuples, lists, sets"""
+        if isinstance(_dict, dict):
+            for key, value in list(_dict.items()):
+                if isinstance(value, (list, dict, tuple, set)):
+                    _dict[key] = self.delete_none(value)
+                elif value is None or key is None:
+                    del _dict[key]
+
+        elif isinstance(_dict, (list, set, tuple)):
+            _dict = type(_dict)(self.delete_none(item) for item in _dict if item is not None)
+
+        return _dict
+    
+    async def downloader(self, url: str, options: [str, Any]): # type: ignore
+        try:
+            down =  await extract_info(YoutubeDL(options), url, download=True)
+            file = down.get("requested_downloads")[0]["filepath"] 
+            duration = down.get("duration")
+            title = down.get("fulltitle")
+            return file, duration, title
+        except DownloadError:
+            logging.error("[DownloadError] : Failed to Download Media")
+        except GeoRestrictedError:
+            logging.error(
+                "[GeoRestrictedError] : The uploader has not made this video"
+                " available in your country"
+            )
+        except Exception as e:
+            logging.exception("YouTuber: Something Went Wrong: {}".format(e))
+
+    @aiowrap
+    def rand_key(self):
+        return str(uuid4())[:8]
+    
+    @aiowrap
+    def get_ytthumb(self, videoid: str):
+        thumb_quality = [
+            "maxresdefault.jpg",  # Best quality
+            "hqdefault.jpg",
+            "sddefault.jpg",
+            "mqdefault.jpg",
+            "default.jpg",  # Worst quality
+        ]
+        thumb_link = "https://i.imgur.com/4LwPLai.png"
+        for qualiy in thumb_quality:
+            link = f"https://i.ytimg.com/vi/{videoid}/{qualiy}"
+            if requests.get(link).status_code == 200:
+                thumb_link = link
+                break
+        return thumb_link
 
 
 if userge.has_bot:
@@ -45,16 +306,10 @@ if userge.has_bot:
                     show_alert=True)
         return wrapper
 
-    ytdl = main.iYTDL(Config.LOG_CHANNEL_ID,
-                      download_path="userge/plugins/utils/iytdl/", silent=True)
-
     # https://gist.github.com/silentsokolov/f5981f314bc006c82a41
     regex = re.compile(
         r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
     YT_DB = {}
-
-    def rand_key():
-        return str(uuid4())[:8]
 
     @userge.on_cmd(
         "iytdl",
@@ -77,9 +332,9 @@ if userge.has_bot:
         if m.client.is_bot:
             match = regex.match(query)
             if match is None:
-                search_key = rand_key()
+                search_key = await YT_DLP().rand_key()
                 YT_DB[search_key] = query
-                search = await main.VideosSearch(query).next()
+                search = await VideosSearch(query).next()
                 if search["result"] == []:
                     return await m.err(f"No result found for `{query}`")
                 i = search['result'][0]
@@ -100,14 +355,14 @@ if userge.has_bot:
                         ]
                     ]
                 )
-                img = await get_ytthumb(i['id'])
+                img = await YT_DLP().get_ytthumb(i['id'])
                 caption = out
                 markup = btn
                 await userge.bot.send_photo(m.chat.id, img, caption=caption, reply_markup=markup)
             else:
                 key = match.group("id")
-                x = await main.Extractor().get_download_button(key)
-                img = await get_ytthumb(key)
+                x = await YT_DLP().get_download_button(key)
+                img = await YT_DLP().get_ytthumb(key)
                 caption = x.caption
                 markup = x.buttons
                 await userge.bot.send_photo(m.chat.id, img, caption=caption, reply_markup=markup)
@@ -124,7 +379,7 @@ if userge.has_bot:
         search_key = callback[1]
         page = int(callback[2])
         query = YT_DB[search_key]
-        search = await main.VideosSearch(query).next()
+        search = await VideosSearch(query).next()
         i = search['result'][page]
         out = f"<b><a href={i['link']}>{i['title']}</a></b>"
         out += f"\nPublished {i['publishedTime']}\n"
@@ -152,7 +407,7 @@ if userge.has_bot:
             ]
         ]
         btn = InlineKeyboardMarkup(scroll_btn+btn)
-        await cq.edit_message_media(InputMediaPhoto(await get_ytthumb(i['id']), caption=out), reply_markup=btn)
+        await cq.edit_message_media(InputMediaPhoto(await YT_DLP().get_ytthumb(i['id']), caption=out), reply_markup=btn)
 
     @userge.bot.on_callback_query(filters=filters.regex(pattern=r"yt_(gen|dl)\|(.*)"))
     @check_owner
@@ -160,7 +415,7 @@ if userge.has_bot:
         callback = cq.data.split("|")
         key = callback[1]
         if callback[0] == "yt_gen":
-            x = await main.Extractor().get_download_button(key)
+            x = await YT_DLP().get_download_button(key)
             await cq.edit_message_caption(caption=x.caption, reply_markup=x.buttons)
         else:
             uid = callback[2]
@@ -169,7 +424,7 @@ if userge.has_bot:
                 format_ = "audio"
             else:
                 format_ = "video"
-            upload_key = await ytdl.download("https://www.youtube.com/watch?v="+key, uid, format_, cq, True, 3)
+            upload_key = await YT_DLP().downloader("https://www.youtube.com/watch?v="+key, format_, cq)
             await ytdl.upload(userge.bot, upload_key, format_, cq, True)
 
     @userge.bot.on_inline_query(
@@ -189,15 +444,15 @@ if userge.has_bot:
         results = []
         found_ = True
         if match is None:
-            search_key = rand_key()
+            search_key = await YT_DLP().rand_key()
             YT_DB[search_key] = query
-            search = (await main.VideosSearch(query=query).next())
+            search = (await VideosSearch(query=query).next())
             if len(search["result"]) == 0:
                 found_ = False
             else:
                 i = search["result"][0]
                 key = i['id']
-                thumb_ = await get_ytthumb(key)
+                thumb_ = await YT_DLP().get_ytthumb(key)
                 out = f"<b><a href={i['link']}>{i['title']}</a></b>"
                 out += f"\nPublished {i['publishedTime']}\n"
                 out += f"\n<b>❯ Duration:</b> {i['duration']}"
@@ -239,8 +494,8 @@ if userge.has_bot:
                 )
         else:
             key = match.group("id")
-            x = await main.Extractor().get_download_button(key)
-            thumb_ = await get_ytthumb(key)
+            x = await YT_DLP().get_download_button(key)
+            thumb_ = await YT_DLP().get_ytthumb(key)
             results = [
                 InlineQueryResultPhoto(
                     photo_url=thumb_,
@@ -251,20 +506,3 @@ if userge.has_bot:
             ]
         await iq.answer(results=results, is_gallery=False, is_personal=True)
         iq.stop_propagation()
-
-
-async def get_ytthumb(videoid: str):
-    thumb_quality = [
-        "maxresdefault.jpg",  # Best quality
-        "hqdefault.jpg",
-        "sddefault.jpg",
-        "mqdefault.jpg",
-        "default.jpg",  # Worst quality
-    ]
-    thumb_link = "https://i.imgur.com/4LwPLai.png"
-    for qualiy in thumb_quality:
-        link = f"https://i.ytimg.com/vi/{videoid}/{qualiy}"
-        if await get_response.status(link) == 200:
-            thumb_link = link
-            break
-    return thumb_link
