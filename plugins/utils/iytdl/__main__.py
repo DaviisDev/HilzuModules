@@ -432,7 +432,7 @@ if userge.has_bot:
                 type_ = inf[4]
                 with tempfile.TemporaryDirectory() as tempdir:
                     path_ = os.path.join(tempdir, "ytdl")
-                thumb = wget.download(await YT_DLP().get_ytthumb(key), Config.DOWN_PATH + "thumbnail.png")
+                thumb = wget.download(await YT_DLP().get_ytthumb(key), "userge/xcache" + "thumbnail.png")
                 if type_ == "a":
                     format_ = "audio"
                 else:
