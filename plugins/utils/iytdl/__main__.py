@@ -354,11 +354,11 @@ if userge.has_bot:
                     [
                         [
                             InlineKeyboardButton(
-                                f"1/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|1|{user_id}")
+                                f"1/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|1|{user_id}|")
                         ],
                         [
                             InlineKeyboardButton(
-                                "Download", callback_data=f"yt_gen|{i['id']}|{user_id}")
+                                "Download", callback_data=f"yt_gen|{i['id']}|{user_id}|")
                         ]
                     ]
                 )
@@ -368,7 +368,7 @@ if userge.has_bot:
                 await userge.bot.send_photo(m.chat.id, img, caption=caption, reply_markup=markup)
             else:
                 key = match.group("id")
-                x = await YT_DLP().get_download_button(key)
+                x = await YT_DLP().get_download_button(key, user_id)
                 img = await YT_DLP().get_ytthumb(key)
                 caption = x.caption
                 markup = x.buttons
@@ -397,9 +397,9 @@ if userge.has_bot:
         scroll_btn = [
             [
                 InlineKeyboardButton(
-                    f"Back", callback_data=f"ytdl_scroll|{search_key}|{page-1}|{user_id}"),
+                    f"Back", callback_data=f"ytdl_scroll|{search_key}|{page-1}|{user_id}|"),
                 InlineKeyboardButton(
-                    f"{page+1}/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|{page+1}|{user_id}")
+                    f"{page+1}/{len(search['result'])}", callback_data=f"ytdl_scroll|{search_key}|{page+1}|{user_id}|")
             ]
         ]
         if page == 0:
@@ -411,7 +411,7 @@ if userge.has_bot:
         btn = [
             [
                 InlineKeyboardButton(
-                    "Download", callback_data=f"yt_gen|{i['id']}|{user_id}")
+                    "Download", callback_data=f"yt_gen|{i['id']}|{user_id}|")
             ]
         ]
         btn = InlineKeyboardMarkup(scroll_btn+btn)
@@ -523,6 +523,7 @@ if userge.has_bot:
         query = iq.query.split("ytdl ", 1)[1]
         match = regex.match(query)
         results = []
+        user_id = iq.from_user.id
         found_ = True
         if match is None:
             search_key = await YT_DLP().rand_key()
@@ -542,7 +543,7 @@ if userge.has_bot:
                 scroll_btn = [
                     [
                         InlineKeyboardButton(
-                            f"1/{len(i)}", callback_data=f"ytdl_scroll|{search_key}|1")
+                            f"1/{len(i)}", callback_data=f"ytdl_scroll|{search_key}|1|{user_id}|")
                     ]
                 ]
                 if len(i) == 1:
@@ -550,7 +551,7 @@ if userge.has_bot:
                 btn = [
                     [
                         InlineKeyboardButton(
-                            "Download", callback_data=f"yt_gen|{key}")
+                            "Download", callback_data=f"yt_gen|{key}|{user_id}|")
                     ]
                 ]
                 btn = InlineKeyboardMarkup(scroll_btn+btn)
