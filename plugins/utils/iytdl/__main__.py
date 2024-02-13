@@ -576,7 +576,7 @@ if userge.has_bot:
                 )
         else:
             key = match.group("id")
-            x = await YT_DLP().get_download_button(key)
+            x = await YT_DLP().get_download_button(key, user_id)
             thumb_ = await YT_DLP().get_ytthumb(key)
             results = [
                 InlineQueryResultPhoto(
