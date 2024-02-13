@@ -424,7 +424,7 @@ if userge.has_bot:
         key = inf[1]
         try:
             if key[0] == "yt_gen":
-                user_id = inf[2]
+                user_id = inf[2] or None
                 x = (await YT_DLP().get_download_button(key, user_id))
                 await cb.edit_message_caption(caption=x.caption, reply_markup=x.buttons)
             else:
