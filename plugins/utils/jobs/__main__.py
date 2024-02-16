@@ -17,7 +17,7 @@ async def gtofertas_(m: Message):
         try:
             if message_count >= int(max_messages):
                 break
-            i = await userge.forward_messages(to_chat=-1001115033767, chat_id=-1001197236241, messages_ids=message_reply)
+            i = await userge.forward_messages(-1001115033767, -1001197236241, message_reply)
             message_reply += 1
             if i:
                 await m.edit(f"<b>📦 GTOfertas</b>:\n\n<b>Ofertas Enviadas</b>: <i>{message_count}/{max_messages}</i>\n\n<b>Time default</b>: <i>{time}</i>\n<b>ID</b>: <code>{message_reply}</code>")
