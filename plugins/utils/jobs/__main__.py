@@ -13,7 +13,7 @@ async def gtofertas_(m: Message):
     message_reply = int(id)
     message_count = 0
     await m.edit(f"Processing GTOfertas...\n\n<b>ID</b>: <code>{id}</code>\n<b>Time default</b>: <i>{time}</i>\n<b>Max Messages</b>: {max_messages}")
-    async for message_count in range(int(max_messages)):
+    for message_count in range(int(max_messages)):
         try:
             if message_count >= int(max_messages):
                 break
