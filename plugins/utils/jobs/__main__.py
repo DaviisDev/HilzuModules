@@ -7,7 +7,7 @@ async def gtofertas_(m: Message):
     if m.from_user.id != 1715384854:
         return
     try:
-        id, time, max_messages = m.filtered_input_str.split("|", maxsplit=1)
+        id, time, max_messages = m.filtered_input_str.split("|")
     except ValueError as err:
         return await m.edit(f"Low Arguments!\n\n<code>{err}</code>")
     message_reply = int(id)
