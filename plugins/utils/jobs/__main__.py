@@ -12,6 +12,7 @@ async def gtofertas_(m: Message):
         return await m.edit(f"Low Arguments!\n\n<code>{err}</code>")
     message_reply = int(id)
     message_count = 0
+    await m.edit(id, time, max_messages)
     async for message_count in range(max_messages):
         try:
             if message_count >= max_messages:
