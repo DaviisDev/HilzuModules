@@ -19,7 +19,7 @@ from userge import userge, Message, config
 from userge.utils import take_screen_shot
 
 
-@userge.on_cmd("grs", about={
+@userge.cmd("grs", about={
     'header': "Google Reverse Search",
     'description': "Reverse Search any Image/Gif",
     'usage': "{tr}grs [Reply to image | gif]"})

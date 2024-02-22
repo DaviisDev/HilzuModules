@@ -16,7 +16,7 @@ from userge import userge, Message, config
 from userge.utils import take_screen_shot, runcmd
 
 
-@userge.on_cmd("meme", about={
+@userge.cmd("meme", about={
     'header': "Write text on any media. (๑¯ω¯๑)",
     'description': "Top and bottom text are separated by ; ",
     'usage': "{tr}meme [text on top] ; [text on bottom] as a reply."}, allow_via_bot=False)

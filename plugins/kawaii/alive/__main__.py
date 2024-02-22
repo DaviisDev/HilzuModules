@@ -28,7 +28,7 @@ from userge.utils import upload_media_tg
 SAVED = get_collection("ALIVE_DB")
 
 
-@userge.on_cmd("alive", about={"header": "Just For Fun"}, allow_channels=False)
+@userge.cmd("alive", about={"header": "Just For Fun"}, allow_channels=False)
 async def alive_inline(message: Message):
     """ just alive for fun """
     try:
@@ -45,7 +45,7 @@ async def alive_inline(message: Message):
         await message.err(str(e_all), del_in=10, log=__name__)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "setalive",
     about={
         "header": "Set alive media",

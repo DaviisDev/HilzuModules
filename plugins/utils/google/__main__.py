@@ -12,7 +12,7 @@ from userge import userge, Message
 
 GoogleSearch.parse_soup = lambda __, _: _.find_all("div", class_="Gx5Zad fP1Qef xpd EtOod pkphOe")
 
-@userge.on_cmd("google", about={
+@userge.cmd("google", about={
     'header': "do a Google search",
     'flags': {
         '-p': "page of results to return (default to 1)",

@@ -10,7 +10,7 @@ from userge import Message, userge
 from userge.utils import deEmojify, rand_array
 
 
-@userge.on_cmd(
+@userge.cmd(
     "sc",
     about={
         "header": "Creates Random Anime Cut Scene",

@@ -15,7 +15,7 @@ from hydrogram import enums
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "iplook", about={
         'header': "A IPLookUp Plugin",
         'description': "Put IP Address to get some details about that.",

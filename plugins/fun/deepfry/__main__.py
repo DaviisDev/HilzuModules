@@ -16,7 +16,7 @@ from userge import userge, Message, config
 from userge.utils import progress, take_screen_shot, runcmd
 
 
-@userge.on_cmd("deepfry", about={
+@userge.cmd("deepfry", about={
     'header': "Deep Fryer",
     'description': "Well deepfy any image/sticker/gif and make it look ugly",
     'usage': "{tr}deepfry [fry count] as a reply.",
@@ -116,7 +116,7 @@ async def deepfry(img):
 # fry by @krishna_singhal
 
 
-@userge.on_cmd("fry", about={
+@userge.cmd("fry", about={
     'header': "frying media",
     'usage': "{tr}fry [fry count (recommendation 3)] [reply to any media]",
     'examples': "{tr}fry 3 [reply to any media]"}, allow_via_bot=False)

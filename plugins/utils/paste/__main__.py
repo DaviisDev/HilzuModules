@@ -219,7 +219,7 @@ def _get_code(url: str) -> Optional[str]:
     return code.split('.')[0]
 
 
-@userge.on_cmd("paste", about={
+@userge.cmd("paste", about={
     'header': "Pastes text or text_file to a bin service",
     'flags': {k: f"use {v.get_name()}" for k, v in _SERVICES.items()},
     'usage': "{tr}paste [flags] [file_type] [text | reply to msg]",
@@ -269,7 +269,7 @@ async def paste_(message: Message) -> None:
                                disable_web_page_preview=True)
 
 
-@userge.on_cmd("getpaste", about={
+@userge.cmd("getpaste", about={
     'header': "Gets the content of a paste url",
     'types': [s.get_name() for s in _SERVICES.values()],
     'usage': "{tr}getpaste [paste link]"})

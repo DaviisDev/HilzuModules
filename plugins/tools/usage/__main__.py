@@ -14,7 +14,7 @@ import requests
 from userge import config, userge, Message
 
 
-@userge.on_cmd("usage", about={'header': "Get Dyno hours usage"})  # pylint:disable=E0602
+@userge.cmd("usage", about={'header': "Get Dyno hours usage"})  # pylint:disable=E0602
 async def usage(message: Message):
     """Get your account Dyno Usage"""
     if not config.HEROKU_APP:

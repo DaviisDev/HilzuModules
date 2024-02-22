@@ -15,7 +15,7 @@ from userge.utils import get_file_id_of_media
 S_LOG = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("spam", about={
+@userge.cmd("spam", about={
     'header': "Spam some Messages",
     'description': "Message Spam module just for fun."
                    "Btw Don't over use this plugin or get"

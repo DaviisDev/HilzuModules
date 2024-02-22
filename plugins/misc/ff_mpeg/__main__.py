@@ -97,7 +97,7 @@ async def get_media_path_and_name(
     return file_path, file_name
 
 
-@userge.on_cmd("x256", about={
+@userge.cmd("x256", about={
     'header': "Encode a file using x256",
     'flags': {'-b': 'Custom bitrate',
               '-d': 'Delete media after process done'},
@@ -146,7 +146,7 @@ async def encode_x256(message: Message):
             Path(f"downloads/{file_name}").unlink(missing_ok=True)
 
 
-@userge.on_cmd("v2a", about={
+@userge.cmd("v2a", about={
     'header': "Convert a video to audio",
     'flags': {'-b': 'Custom bitrate',
               '-d': 'Delete media after process done'},
@@ -199,7 +199,7 @@ async def video_to_audio(message: Message):
             Path(f"downloads/{file_name}").unlink(missing_ok=True)
 
 
-@userge.on_cmd("vscale", about={
+@userge.cmd("vscale", about={
     'header': "Scale a video to a given quality using h264",
     'flags': {'-q': 'Video Quality 144/240/360/480/720/etc',
               '-b': 'Custom bitrate',
@@ -255,7 +255,7 @@ async def scale_video(message: Message):
             Path(f"downloads/{file_name}").unlink(missing_ok=True)
 
 
-@userge.on_cmd("vth", about={
+@userge.cmd("vth", about={
     'header': "Get video thumbnail",
     'flags': {'-d': 'Delete media after process done'},
     'usage': "{tr}vth [file / folder path | direct link | reply to telegram file]",
@@ -300,14 +300,14 @@ async def video_thumbnail(message: Message):
             Path(f"downloads/{file_name}").unlink(missing_ok=True)
 
 
-@userge.on_cmd("vtrim", about={
+@userge.cmd("vtrim", about={
     'header': "Trim a video",
     'usage': "{tr}vtrim [duration] | [file / folder path | direct link | reply to telegram file]",
     'examples': [
         '{tr}vtrim 00:00:00 00:01:00 | link',
         '{tr}vtrim 00:10:00 00:20:00 | path'
     ]}, check_downpath=True)
-@userge.on_cmd("atrim", about={
+@userge.cmd("atrim", about={
     'header': "Trim an audio track",
     'flags': {'-d': 'Delete media after process done'},
     'usage': "{tr}atrim [duration] | [file / folder path | direct link | reply to telegram file]",
@@ -366,7 +366,7 @@ async def video_trim(message: Message):
             Path(video_file).unlink(missing_ok=True)
 
 
-@userge.on_cmd("vcompress", about={
+@userge.cmd("vcompress", about={
     'header': "Compress a video file",
     'flags': {'-d': 'Delete media after process done'},
     'usage': "{tr}vcompress percentage [file / folder | direct link | reply to telegram file]",
@@ -426,7 +426,7 @@ async def video_compress(message: Message):
             Path(f"downloads/{file_name}").unlink(missing_ok=True)
 
 
-@userge.on_cmd("minfo", about={
+@userge.cmd("minfo", about={
     'header': "Get media info",
     'flags': {'-d': 'Delete media after process done'},
     'usage': "{tr}minfo [file / folder path | direct link | reply to telegram file]",

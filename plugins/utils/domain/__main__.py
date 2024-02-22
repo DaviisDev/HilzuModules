@@ -15,7 +15,7 @@ from hydrogram import enums
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "domain",
     about={
         "header": "Your Domain",
@@ -86,7 +86,7 @@ async def creator(m: Message):
     )
 
 
-@userge.on_cmd("stats",
+@userge.cmd("stats",
                about="Shows user account stats!",
                allow_via_bot=False)
 async def stats(message: Message):

@@ -20,7 +20,7 @@ from userge import userge, Message
 from hydrogram import enums
 
 
-@userge.on_cmd(
+@userge.cmd(
     "balive", about={
         'header': "Pings All Defined Bots",
         'description': "<b>Pings All bots you mention and check their status.</b>\n\n"

@@ -58,7 +58,7 @@ async def _init() -> None:
         _filter_updater(flt['chat_id'], flt['name'], flt['mid'])
 
 
-@userge.on_cmd(
+@userge.cmd(
     "filters", about={
         'header': "List all saved filters in current chat",
         'flags': {'-all': "List all saved filters in every chats"}},
@@ -84,7 +84,7 @@ async def filters_active(message: Message) -> None:
         await message.edit("`There are no saved filters in this chat`", del_in=5)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "delfilter", about={
         'header': "Deletes a filter by name",
         'flags': {
@@ -121,7 +121,7 @@ async def delete_filters(message: Message) -> None:
     await message.edit(text=out, del_in=3)
 
 
-@userge.on_cmd(
+@userge.cmd(
     r"addfilter ([^\s\|][^\|]*)(?:\s?\|\s?([\s\S]+))?", about={
         'header': "Adds a filter by name",
         'options': {

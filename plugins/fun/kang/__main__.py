@@ -25,7 +25,7 @@ from userge.utils.tools import runcmd
 from .. import kang
 
 
-@userge.on_cmd(
+@userge.cmd(
     "kang", about={
         'header': "kangs stickers or creates new ones",
         'flags': {
@@ -170,7 +170,7 @@ async def kang_(message: Message):
         os.remove(media)
 
 
-@userge.on_cmd("stkrinfo", about={
+@userge.cmd("stkrinfo", about={
     'header': "get sticker pack info",
     'usage': "reply {tr}stkrinfo to any sticker"})
 async def sticker_pack_info_(message: Message):

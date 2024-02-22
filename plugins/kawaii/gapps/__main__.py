@@ -20,7 +20,7 @@ from ...builtin import sudo
 
 COMPILE = re.compile(r"(.*)[*]*\-arm")
 
-@userge.on_cmd(
+@userge.cmd(
     "gapps", about={
         'header': "get latest google apps"
     }

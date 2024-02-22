@@ -23,7 +23,7 @@ CHANNEL = userge.getCLogger(__name__)
 LOG = userge.getLogger(__name__)
 
 
-@userge.on_cmd("gmute", about={
+@userge.cmd("gmute", about={
     'header': "Globally Mute A User",
     'description': "Adds User to your GMute List",
     'examples': "{tr}gmute [userid | reply] [reason for gmute] (mandatory)"},
@@ -83,7 +83,7 @@ async def gmute_user(msg: Message):
     LOG.info("G-Muted %s", str(user_id))
 
 
-@userge.on_cmd("ungmute", about={
+@userge.cmd("ungmute", about={
     'header': "Globally Unmute an User",
     'description': "Removes an user from your GMute List",
     'examples': "{tr}ungmute [userid | reply]"},
@@ -123,7 +123,7 @@ async def ungmute_user(msg: Message):
     LOG.info("UnGMuted %s", str(user_id))
 
 
-@userge.on_cmd("gmlist", about={
+@userge.cmd("gmlist", about={
     'header': "Get a List of GMuted Users",
     'description': "Get Up-to-date list of users GMuted by you.",
     'examples': "{tr}gmlist"},

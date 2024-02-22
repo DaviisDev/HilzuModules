@@ -16,7 +16,7 @@ from userge import Message, userge
 from userge.utils import runcmd
 
 
-@userge.on_cmd(
+@userge.cmd(
     "neofetch",
     about={
         "header": "Neofetch is a command-line system information tool",

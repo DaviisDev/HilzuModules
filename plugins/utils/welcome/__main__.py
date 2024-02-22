@@ -35,7 +35,7 @@ async def _init() -> None:
         WELCOME_DELETE_TIMEOUT = wel_t['data']
 
 
-@userge.on_cmd("setwelcome", about={
+@userge.cmd("setwelcome", about={
     'header': "Creates a welcome message in current chat",
     'options': {
         '{fname}': "add first name",
@@ -60,7 +60,7 @@ async def setwel(msg: Message):
     await raw_set(msg, 'Welcome', WELCOME_COLLECTION, WELCOME_CHATS)
 
 
-@userge.on_cmd("setleft", about={
+@userge.cmd("setleft", about={
     'header': "Creates a left message in current chat",
     'options': {
         '{fname}': "add first name",
@@ -85,7 +85,7 @@ async def setleft(msg: Message):
     await raw_set(msg, 'Left', LEFT_COLLECTION, LEFT_CHATS)
 
 
-@userge.on_cmd("nowelcome", about={
+@userge.cmd("nowelcome", about={
     'header': "Disables welcome message in the current chat",
     'flags': {'-all': "disable all welcome messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -94,7 +94,7 @@ async def nowel(msg: Message):
     await raw_no(msg, 'Welcome', WELCOME_COLLECTION, WELCOME_CHATS)
 
 
-@userge.on_cmd("noleft", about={
+@userge.cmd("noleft", about={
     'header': "Disables left message in the current chat",
     'flags': {'-all': "disable all left messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -103,7 +103,7 @@ async def noleft(msg: Message):
     await raw_no(msg, 'Left', LEFT_COLLECTION, LEFT_CHATS)
 
 
-@userge.on_cmd("dowelcome", about={
+@userge.cmd("dowelcome", about={
     'header': "Turns on welcome message in the current chat",
     'flags': {'-all': "enable all welcome messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -112,7 +112,7 @@ async def dowel(msg: Message):
     await raw_do(msg, 'Welcome', WELCOME_COLLECTION, WELCOME_CHATS)
 
 
-@userge.on_cmd("doleft", about={
+@userge.cmd("doleft", about={
     'header': "Turns on left message in the current chat :)",
     'flags': {'-all': "enable all left messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -121,7 +121,7 @@ async def doleft(msg: Message):
     await raw_do(msg, 'Left', LEFT_COLLECTION, LEFT_CHATS)
 
 
-@userge.on_cmd("delwelcome", about={
+@userge.cmd("delwelcome", about={
     'header': "Delete welcome message in the current chat :)",
     'flags': {'-all': "delete all welcome messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -130,7 +130,7 @@ async def delwel(msg: Message):
     await raw_del(msg, 'Welcome', WELCOME_COLLECTION, WELCOME_CHATS)
 
 
-@userge.on_cmd("delleft", about={
+@userge.cmd("delleft", about={
     'header': "Delete left message in the current chat :)",
     'flags': {'-all': "delete all left messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -139,7 +139,7 @@ async def delleft(msg: Message):
     await raw_del(msg, 'Left', LEFT_COLLECTION, LEFT_CHATS)
 
 
-@userge.on_cmd("vwelcome", about={
+@userge.cmd("vwelcome", about={
     'header': "Shows welcome message in current chat",
     'flags': {'-all': "view all welcome messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -148,7 +148,7 @@ async def viewwel(msg: Message):
     await raw_view(msg, 'Welcome', WELCOME_COLLECTION)
 
 
-@userge.on_cmd("vleft", about={
+@userge.cmd("vleft", about={
     'header': "Shows left message in current chat",
     'flags': {'-all': "view all left messages"}},
     allow_channels=False, allow_bots=False, allow_private=False)
@@ -157,7 +157,7 @@ async def viewleft(msg: Message):
     await raw_view(msg, 'Left', LEFT_COLLECTION)
 
 
-@userge.on_cmd("swelto (\\d+)", about={
+@userge.cmd("swelto (\\d+)", about={
     'header': "Set auto welcome/left message delete timeout",
     'usage': "{tr}swelto [timeout in seconds]",
     'examples': "{tr}swelto 15\n{tr}swelto 0 : for disable deletion"})
@@ -176,7 +176,7 @@ async def set_welcome_timeout(message: Message):
         await message.edit("`Auto welcome/left message deletion disabled!`", del_in=3)
 
 
-@userge.on_cmd("vwelto", about={'header': "View auto welcome/left message delete timeout"})
+@userge.cmd("vwelto", about={'header': "View auto welcome/left message delete timeout"})
 async def view_welcome_timeout(message: Message):
     """ view welcome/left timeout """
     if WELCOME_DELETE_TIMEOUT:

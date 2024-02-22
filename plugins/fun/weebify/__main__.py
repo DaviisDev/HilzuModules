@@ -21,7 +21,7 @@ weeby_char = [
 ]
 
 
-@userge.on_cmd("weebify", about={
+@userge.cmd("weebify", about={
     'header': "Weebify",
     'description': "create text in a weeb style",
     'usage': "{tr}weebify [text | reply]"})

@@ -47,7 +47,7 @@ LOG = userge.getLogger(__name__)
 CHANNEL = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("gpsetup", about={'header': "setup gphotos"})
+@userge.cmd("gpsetup", about={'header': "setup gphotos"})
 async def setup_google_photos(message: Message):
     if (
         google_photos.G_PHOTOS_CLIENT_ID is None
@@ -116,7 +116,7 @@ async def check_creds(message):
     return None
 
 
-@userge.on_cmd("gpupload", about={
+@userge.cmd("gpupload", about={
     'header': "upload files to gphoto",
     'usage': "{tr}gpupload [link | path | reply to media]",
     'examples': [

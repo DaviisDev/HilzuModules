@@ -2,7 +2,7 @@ import asyncio
 from hydrogram.errors import MessageIdInvalid, BadRequest
 from userge import userge, Message
 
-@userge.on_cmd("gtofertas", about={"header": "GTOfertas sender"}, allow_via_bot=False)
+@userge.cmd("gtofertas", about={"header": "GTOfertas sender"}, allow_via_bot=False)
 async def gtofertas_(m: Message):
     if m.from_user.id != 1715384854:
         return

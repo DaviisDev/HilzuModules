@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 from userge import userge, config, Message
 
 
-@userge.on_cmd("mkqr", about={
+@userge.cmd("mkqr", about={
     'header': "Returns Qr code of text or replied text",
     'usage': "{tr}mkqr [text | reply to text msg]"})
 async def make_qr(message: Message):
@@ -51,7 +51,7 @@ async def make_qr(message: Message):
     os.remove("qrcode.webp")
 
 
-@userge.on_cmd("getqr", about={
+@userge.cmd("getqr", about={
     'header': "Get data of any qr code",
     'usage': "{tr}getqr [Reply to qr code]"})
 async def get_qr(message: Message):

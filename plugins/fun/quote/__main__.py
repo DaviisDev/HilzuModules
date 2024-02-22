@@ -7,7 +7,7 @@ from userge import Message, userge
 from userge.utils.exceptions import StopConversation
 
 
-@userge.on_cmd(
+@userge.cmd(
     "q",
     about={
         "header": "Quote message",

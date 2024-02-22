@@ -32,7 +32,7 @@ CLRS = {
 }
 
 
-@userge.on_cmd(
+@userge.cmd(
     "amongus",
     about={
         "header": "Create a Sticker based on the popular game Among Us",

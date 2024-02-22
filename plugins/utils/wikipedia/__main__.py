@@ -11,7 +11,7 @@ import wikipedia
 from userge import userge, Message
 
 
-@userge.on_cmd("wiki", about={
+@userge.cmd("wiki", about={
     'header': "do a Wikipedia search",
     'flags': {'-l': "limit the number of returned results (defaults to 5)"},
     'usage': "{tr}wiki [flags] [query | reply to msg]",

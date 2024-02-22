@@ -17,7 +17,7 @@ from userge import userge, Message, pool
 from .. import translate
 
 
-@userge.on_cmd("tr", about={
+@userge.cmd("tr", about={
     'header': "Translate the given text using Google Translate",
     'supported languages': dumps(LANGUAGES, indent=4, sort_keys=True),
     'usage': "from english to sinhala\n"

@@ -14,7 +14,7 @@ from hydrogram import enums
 from userge import userge, Message
 
 
-@userge.on_cmd("whois", about={
+@userge.cmd("whois", about={
     'header': "use this to get any user details",
     'usage': "just reply to any user message or add user_id or username",
     'examples': "{tr}whois [user_id | username]"}, allow_channels=False)

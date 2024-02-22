@@ -10,7 +10,7 @@ from userge import userge, Message
 from hydrogram import enums
 
 
-@userge.on_cmd("admins", about={
+@userge.cmd("admins", about={
     'header': "View or mention admins in chat",
     'flags': {
         '-m': "mention all admins",

@@ -10,7 +10,7 @@ from hydrogram.errors import YouBlockedUser
 from userge import Message, userge
 
 
-@userge.on_cmd(
+@userge.cmd(
     "d",
     about={
         "header": "Device description",

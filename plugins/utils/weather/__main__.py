@@ -34,7 +34,7 @@ async def get_tz(con):
         return
 
 
-@userge.on_cmd("weather", about={
+@userge.cmd("weather", about={
     'header': "use this to get weather details",
     'description': "get weather info for any city",
     'examples': [

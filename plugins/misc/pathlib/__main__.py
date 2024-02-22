@@ -339,7 +339,7 @@ class SCLib(_BaseLib):
         pool.submit_thread(self._combine_worker, file_list)
 
 
-@userge.on_cmd('ls', about={
+@userge.cmd('ls', about={
     'header': "list directory",
     'usage': "{tr}ls [path]\n{tr}ls -d : default path"}, allow_channels=False)
 async def ls_dir(message: Message) -> None:
@@ -376,7 +376,7 @@ async def ls_dir(message: Message) -> None:
     await message.edit_or_send_as_file(out, parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd('dset', about={
+@userge.cmd('dset', about={
     'header': "set temporary working directory",
     'usage': "{tr}dset [path / name]"}, allow_channels=False)
 async def dset_(message: Message) -> None:
@@ -394,7 +394,7 @@ async def dset_(message: Message) -> None:
         await message.err(str(p_e))
 
 
-@userge.on_cmd('dreset', about={
+@userge.cmd('dreset', about={
     'header': "reset to default working directory",
     'usage': "{tr}dreset"}, allow_channels=False)
 async def dreset_(message: Message) -> None:
@@ -404,7 +404,7 @@ async def dreset_(message: Message) -> None:
     await message.edit(f"reset **working directory** to `{path}` successfully!", del_in=5)
 
 
-@userge.on_cmd("dclear", about={
+@userge.cmd("dclear", about={
     'header': "Clear the current working directory"}, allow_channels=False)
 async def dclear_(message: Message):
     """ clear dir """
@@ -418,7 +418,7 @@ async def dclear_(message: Message):
     os.makedirs(config.Dynamic.DOWN_PATH, exist_ok=True)
 
 
-@userge.on_cmd('dremove', about={
+@userge.cmd('dremove', about={
     'header': "remove a directory or file",
     'usage': "{tr}dremove [path / name]"}, allow_channels=False)
 async def dremove_(message: Message) -> None:
@@ -437,7 +437,7 @@ async def dremove_(message: Message) -> None:
     await message.edit(f"path : `{path}` **removed** successfully!", del_in=5)
 
 
-@userge.on_cmd(r'drename ([^|]+)\|([^|]+)', about={  # noqa
+@userge.cmd(r'drename ([^|]+)\|([^|]+)', about={  # noqa
     'header': "rename a directory or file",
     'usage': "{tr}drename [path / name] | [new name]"}, allow_channels=False)
 async def drename_(message: Message) -> None:
@@ -452,7 +452,7 @@ async def drename_(message: Message) -> None:
     await message.edit(f"path : `{path}` **renamed** to `{new_path}` successfully!", del_in=5)
 
 
-@userge.on_cmd(r'split (\d+) ([\s\S]+)', about={
+@userge.cmd(r'split (\d+) ([\s\S]+)', about={
     'header': "Split files",
     'usage': "{tr}split [split size (MB)] [file path]",
     'examples': "{tr}split 5 downloads/test.zip"})
@@ -517,7 +517,7 @@ async def split_(message: Message) -> None:
             f"in `{m_s}` seconds.", log=__name__)
 
 
-@userge.on_cmd('combine', about={
+@userge.cmd('combine', about={
     'header': "Combine split files",
     'usage': "{tr}combine [file path]",
     'examples': "{tr}combine downloads/test.tar.00000"})
@@ -585,7 +585,7 @@ async def combine_(message: Message) -> None:
             f"in `{m_s}` seconds.", log=__name__)
 
 
-@userge.on_cmd('zip', about={
+@userge.cmd('zip', about={
     'header': "Zip file / folder",
     'usage': "{tr}zip [file path | folder path]"})
 async def zip_(message: Message) -> None:
@@ -593,7 +593,7 @@ async def zip_(message: Message) -> None:
     await _pack_helper(message)
 
 
-@userge.on_cmd('tar', about={
+@userge.cmd('tar', about={
     'header': "Tar file / folder",
     'usage': "{tr}tar [file path | folder path]"})
 async def tar_(message: Message) -> None:
@@ -652,7 +652,7 @@ async def _pack_helper(message: Message, tar: bool = False) -> None:
             f"in `{m_s}` seconds.", log=__name__)
 
 
-@userge.on_cmd('unpack', about={
+@userge.cmd('unpack', about={
     'header': "unpack packed file",
     'usage': "{tr}unpack [file path]",
     'types': ['zip', 'tar', 'rar']})
@@ -711,7 +711,7 @@ async def unpack_(message: Message) -> None:
             f"in `{m_s}` seconds.", log=__name__)
 
 
-@userge.on_cmd('packinfo', about={
+@userge.cmd('packinfo', about={
     'header': "File content of the pack",
     'usage': "{tr}packinfo [file path]",
     'types': ['zip', 'tar', 'rar']})

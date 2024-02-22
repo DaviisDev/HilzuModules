@@ -14,7 +14,7 @@ import aiohttp
 from userge import userge, Message
 
 
-@userge.on_cmd("pat", about={
+@userge.cmd("pat", about={
     'header': "Give head Pat xD",
     'flags': {'-g': "For Pat Gifs"},
     'usage': "{tr}pat [reply | username]\n{tr}pat -g [reply]"})

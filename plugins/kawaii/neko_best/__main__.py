@@ -53,7 +53,7 @@ CATEGORIES = [
 ]
 
 
-@userge.on_cmd(
+@userge.cmd(
     "neko",
     about={
         "header": "Get SFW stuff from nekos.best",

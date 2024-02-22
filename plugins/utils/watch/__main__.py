@@ -65,7 +65,7 @@ def get_stream_data(query):
     return stream_data
 
 
-@userge.on_cmd("watch", about={
+@userge.cmd("watch", about={
     'header': "Get stream link for a Movie and TV Shows",
     'usage': "{tr}watch [query]",
     'examples': "{tr}watch Avengers Endgame"})

@@ -15,7 +15,7 @@ from emoji import get_emoji_regexp
 from userge import userge, Message
 
 
-@userge.on_cmd("sticker", about={
+@userge.cmd("sticker", about={
     'header': "Creates random anime sticker",
     'flags': {
         '-f': "To get only girls in anime",

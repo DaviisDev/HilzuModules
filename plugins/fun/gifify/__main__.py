@@ -15,7 +15,7 @@ import lottie
 from userge import userge, Message, config, pool
 
 
-@userge.on_cmd("gif", about={
+@userge.cmd("gif", about={
     'header': "Convert Telegram Animated Sticker to GiF",
     'usage': "{tr}gif [quality (optional)] [reply to sticker]\n"
              "Max quality : 720p",

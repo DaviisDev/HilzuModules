@@ -54,7 +54,7 @@ async def _init() -> None:
         blocked_message = _blockPmMsg.get('data')
 
 
-@userge.on_cmd("allow", about={
+@userge.cmd("allow", about={
     'header': "allows someone to contact",
     'description': "Ones someone is allowed, "
                    "Userge will not interfere or handle such private chats",
@@ -80,7 +80,7 @@ async def allow(message: Message):
             del_in=3)
 
 
-@userge.on_cmd("nopm", about={
+@userge.cmd("nopm", about={
     'header': "Activates guarding on inbox",
     'flags': {"-all": "Delete all allowed PM's"},
     'description': "Ones someone is allowed, "
@@ -109,7 +109,7 @@ async def denyToPm(message: Message):
             del_in=3)
 
 
-@userge.on_cmd("listpm", about={
+@userge.cmd("listpm", about={
     'header': "List all Allowed PM's",
     'usage': "{tr}listpm"})
 async def list_pm(msg: Message):
@@ -136,7 +136,7 @@ async def get_id(message: Message):
     return userid
 
 
-@userge.on_cmd(
+@userge.cmd(
     "pmguard", about={
         'header': "Switchs the pm permiting module on",
         'description': "This is switched off in default. "
@@ -160,7 +160,7 @@ async def pmguard(message: Message):
     )
 
 
-@userge.on_cmd(
+@userge.cmd(
     "ipmguard", about={
         'header': "Switchs the Inline pm permiting module on",
         'description': "This is switched off in default.",
@@ -181,7 +181,7 @@ async def ipmguard(message: Message):
     )
 
 
-@userge.on_cmd("setpmmsg", about={
+@userge.cmd("setpmmsg", about={
     'header': "Sets the reply message",
     'description': "You can change the default message which userge gives on un-invited PMs",
     'flags': {'-r': "reset to default"},
@@ -210,7 +210,7 @@ async def set_custom_nopm_message(message: Message):
             await message.err("invalid input!")
 
 
-@userge.on_cmd("ipmmsg", about={
+@userge.cmd("ipmmsg", about={
     'header': "Set inline pm msg for Inline pmpermit",
     'usage': "{tr}ipmmsg [text | reply to text msg]"}, allow_channels=False)
 async def change_inline_message(message: Message):
@@ -224,7 +224,7 @@ async def change_inline_message(message: Message):
         await message.err("invalid input!")
 
 
-@userge.on_cmd("setbpmmsg", about={
+@userge.cmd("setbpmmsg", about={
     'header': "Sets the block message",
     'description': "You can change the default blockPm message "
                    "which userge gives on un-invited PMs",
@@ -254,7 +254,7 @@ async def set_custom_blockpm_message(message: Message):
             await message.err("invalid input!")
 
 
-@userge.on_cmd(
+@userge.cmd(
     "vpmmsg", about={
         'header': "Displays the reply message for uninvited PMs"},
     allow_channels=False)
@@ -263,7 +263,7 @@ async def view_current_noPM_msg(message: Message):
     await message.edit(f"--current PM message--\n\n{noPmMessage}")
 
 
-@userge.on_cmd(
+@userge.cmd(
     "vbpmmsg", about={
         'header': "Displays the reply message for blocked PMs"},
     allow_channels=False)

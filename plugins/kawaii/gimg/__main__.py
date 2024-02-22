@@ -37,7 +37,7 @@ class Colors:
     # fmt: on
 
 
-@userge.on_cmd(
+@userge.cmd(
     "img",
     about={
         "header": "Google Image Downloader",

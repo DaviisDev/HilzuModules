@@ -317,7 +317,7 @@ if userge.has_bot:
         r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
     YT_DB = {}
 
-    @userge.on_cmd(
+    @userge.cmd(
         "iytdl",
         about={
             'header': "Advanced YTDL",

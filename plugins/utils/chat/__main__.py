@@ -34,7 +34,7 @@ def mention_html(user_id, name):
         user_id, html.escape(name))
 
 
-@userge.on_cmd("join", about={
+@userge.cmd("join", about={
     'header': "Join chat",
     'usage': "{tr}join [chat username | reply to Chat username Text]",
     'examples': "{tr}join UserGeOt"})
@@ -64,7 +64,7 @@ async def join_chat(message: Message):
         await asyncio.sleep(2)
 
 
-@userge.on_cmd("leave",
+@userge.cmd("leave",
                about={'header': "Leave Chat",
                       'usage': "{tr}leave\n{tr}leave [chat username | reply to Chat username text]",
                       'examples': "{tr}leave"},
@@ -75,7 +75,7 @@ async def leave_chat(message: Message):
     await userge.leave_chat(message.chat.id)
 
 
-@userge.on_cmd("invite", about={
+@userge.cmd("invite", about={
     'header': "Generate chat Invite link",
     'usage': "{tr}invite\n{tr}invite [Chat Id | Chat Username]"},
     allow_channels=False, allow_private=False)
@@ -107,7 +107,7 @@ async def invite_link(message: Message):
             await message.err(e_f)
 
 
-@userge.on_cmd("tagall", about={
+@userge.cmd("tagall", about={
     'header': "Tagall recent 100 members with caption",
     'usage': "{tr}tagall [Text | reply to text Msg]"},
     allow_via_bot=False, allow_private=False, only_admins=True)
@@ -140,7 +140,7 @@ async def tagall_(message: Message):
     await message.edit("```Tagged recent Members Successfully...```", del_in=3)
 
 
-@userge.on_cmd("stagall", about={
+@userge.cmd("stagall", about={
     'header': "Silent tag recent 100 members with caption",
     'usage': "{tr}stagall [Text | reply to text Msg]"},
     allow_private=False, allow_via_bot=False, only_admins=False)
@@ -164,7 +164,7 @@ async def stagall_(message: Message):
         chat_id, text, reply_to_message_id=message_id)
 
 
-@userge.on_cmd("tadmins", about={
+@userge.cmd("tadmins", about={
     'header': "Tag admins in group",
     'usage': "{tr}tadmins [Text | reply to text Msg]"},
     allow_private=False)
@@ -203,7 +203,7 @@ async def tadmins_(message: Message):
     await message.edit("```Admins tagged Successfully...```", del_in=3)
 
 
-@userge.on_cmd("schat", about={
+@userge.cmd("schat", about={
     'header': "Update and delete chat info",
     'flags': {
         '-title': "update chat title",
@@ -260,7 +260,7 @@ async def set_chat(message: Message):
         await message.edit("```Invalid args, Check help...```", del_in=5)
 
 
-@userge.on_cmd('vchat', about={
+@userge.cmd('vchat', about={
     'header': "View Chat",
     'flags': {
         '-title': "Print chat title",

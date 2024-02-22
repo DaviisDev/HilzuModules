@@ -13,7 +13,7 @@ import random
 from userge import userge, Message
 
 
-@userge.on_cmd("poll", about={
+@userge.cmd("poll", about={
     'header': "Create Poll of Suggestion to get opinion",
     'flags': {'-n': "Use to Make poll non-anonymous"},
     'usage': "{tr}poll [reply to ques text]"},
@@ -44,7 +44,7 @@ async def create_poll(msg: Message):
     await msg.delete()
 
 
-@userge.on_cmd("vote", about={
+@userge.cmd("vote", about={
     'header': "Vote poll",
     'description': "Options Should be in numeric",
     'usage': "{tr}vote [option | reply to poll]",
@@ -70,7 +70,7 @@ async def vote_poll(msg: Message):
         await msg.err("How can I vote without reply to poll")
 
 
-@userge.on_cmd("stop", about={
+@userge.cmd("stop", about={
     'header': "Stop a poll which was sent by you.",
     'usage': "{tr}stop [reply to poll]"},
     allow_private=False)
@@ -90,7 +90,7 @@ async def stop_poll(msg: Message):
         await msg.err("How can I stop poll without reply a poll")
 
 
-@userge.on_cmd("retract", about={
+@userge.cmd("retract", about={
     'header': "Retract your vote in a Poll",
     'usage': "{tr}retract [reply to poll]"},
     allow_private=False)

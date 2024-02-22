@@ -33,7 +33,7 @@ with tempfile.TemporaryDirectory() as tempdir:
     path_ = os.path.join(tempdir, "ytdl")
 
 
-@userge.on_cmd(
+@userge.cmd(
     "song",
     about={
         "header": "Music Downloader",
@@ -86,7 +86,7 @@ async def song_(message: Message):
         await message.edit(str(filename_))
 
 
-@userge.on_cmd(
+@userge.cmd(
     "video",
     about={
         "header": "Video Downloader",

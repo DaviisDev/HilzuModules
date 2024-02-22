@@ -112,7 +112,7 @@ class WitAiAPI:
                         "Ensure that the provided audio is a valid audio file!`"
 
 
-@userge.on_cmd("stt", about={
+@userge.cmd("stt", about={
     'header': "transcribe a file (speech to text)",
     'options': {'-t': 'send text to telegram as well as the transcription file'},
     'usage': "{tr}stt lang [file / folder path | direct link | reply to telegram file]",

@@ -17,7 +17,7 @@ from .. import lastfm
 API = "http://ws.audioscrobbler.com/2.0"
 
 
-@userge.on_cmd(
+@userge.cmd(
     "lt",
     about={"header": "Mostra o que você esta ouvindo no momento"},
 )
@@ -67,7 +67,7 @@ async def last_fm_pic_(message: Message):
     await message.edit(f"<a href={image}>\u200c</a>" + rep + scrobbler_, parse_mode=ParseMode.HTML)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "lastuser",
     about={
         "header": "Obter informações do usuário Lastfm",
@@ -117,7 +117,7 @@ async def last_fm_user_info_(message: Message):
     await message.edit(result, parse_mode=ParseMode.HTML)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "lastlove",
     about={
         "header": "Obter faixas favoritas do Lastfm",
@@ -153,7 +153,7 @@ async def last_fm_loved_tracks_(message: Message):
     await message.edit(rep, disable_web_page_preview=True, parse_mode=ParseMode.HTML)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "lastplayed",
     about={
         "header": "Obtenha músicas LastFm tocadas recentemente",
@@ -210,7 +210,7 @@ async def recs(query, typ, lim):
     return await resp(params)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "compat",
     about={
         "header": "Compat",

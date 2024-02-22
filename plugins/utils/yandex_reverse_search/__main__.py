@@ -15,7 +15,7 @@ from telegraph import upload_file
 from userge import userge, config, Message, pool
 
 
-@userge.on_cmd("yrs", about={
+@userge.cmd("yrs", about={
     'header': "Yandex Reverse Search",
     'description': "Reverse Search any Image/sticker",
     'usage': "{tr}yrs [Reply to image | sticker]",

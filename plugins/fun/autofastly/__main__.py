@@ -30,7 +30,7 @@ async def _init() -> None:
         IS_ENABLED = data['on']
 
 
-@userge.on_cmd("autofastly", about={
+@userge.cmd("autofastly", about={
     'header': "Auto Fastly Response",
     'description': "enable or disable auto fastly response",
     'usage': "{tr}autofastly"},

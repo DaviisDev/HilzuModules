@@ -201,7 +201,7 @@ def _re_init_handler():
     HANDLER = handler
 
 
-@userge.on_cmd("antispam", about={
+@userge.cmd("antispam", about={
     'header': "enable / disable antispam",
     'description': "Toggle API Auto Bans"}, allow_channels=False)
 async def antispam_(message: Message):

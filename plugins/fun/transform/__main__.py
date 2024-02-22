@@ -18,7 +18,7 @@ from userge.utils import take_screen_shot, runcmd
 Converted = config.Dynamic.DOWN_PATH + "sticker.webp"
 
 
-@userge.on_cmd("(ghost|invert)", about={
+@userge.cmd("(ghost|invert)", about={
     'header': "Invert media as looking like a ghost",
     'usage': "{tr}ghost [reply to any media]\n"
              "{tr}invert [reply to any media]"}, name="ghost")
@@ -82,7 +82,7 @@ async def ghost_invert(message: Message):
             os.remove(files)
 
 
-@userge.on_cmd("(mirror|flip)", about={
+@userge.cmd("(mirror|flip)", about={
     'header': "Mirror and flip any media",
     'usage': "{tr}mirror [reply to any media]\n"
              "{tr}flip [reply to any media]"}, name="mirror")
@@ -144,7 +144,7 @@ async def mirror_flip(message: Message):
             os.remove(files)
 
 
-@userge.on_cmd("rotate", about={
+@userge.cmd("rotate", about={
     'header': "Rotate any media",
     'usage': "{tr}rotate [angle to rotate] [reply to media]\n"
              "angle = 0 to 360(default is 90)"})

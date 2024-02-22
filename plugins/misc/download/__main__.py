@@ -14,7 +14,7 @@ from .. import download
 LOGGER = userge.getLogger(__name__)
 
 
-@userge.on_cmd("download", about={
+@userge.cmd("download", about={
     'header': "Download files to server",
     'usage': "{tr}download [url | reply to telegram media]",
     'examples': "{tr}download https://speed.hetzner.de/100MB.bin | testing upload.bin"},

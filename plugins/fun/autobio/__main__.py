@@ -37,7 +37,7 @@ async def _init() -> None:
         AUTOBIO_TIMEOUT = b_t['data']
 
 
-@userge.on_cmd("autobio", about={
+@userge.cmd("autobio", about={
     'header': "Auto Updates your Profile Bio with 2 languages.",
     'usage': "{tr}autobio (for eng)\n{tr}autobio Hi (for hindi)"})
 async def auto_bio(msg: Message):
@@ -67,7 +67,7 @@ async def auto_bio(msg: Message):
     BIO_UPDATION = asyncio.get_event_loop().create_task(_autobio_worker())
 
 
-@userge.on_cmd("sabto", about={
+@userge.cmd("sabto", about={
     'header': "Set auto bio timeout",
     'usage': "{tr}sabto [timeout in seconds]",
     'examples': "{tr}sabto 500"})
@@ -86,7 +86,7 @@ async def set_bio_timeout(message: Message):
         f"`Set auto bio timeout as {t_o} seconds!`", del_in=5)
 
 
-@userge.on_cmd("vabto", about={'header': "View auto bio timeout"})
+@userge.cmd("vabto", about={'header': "View auto bio timeout"})
 async def view_bio_timeout(message: Message):
     """ view bio timeout """
     await message.edit(

@@ -77,7 +77,7 @@ async def stop_vc_client():
         await VC_CLIENT.stop()
 
 
-@userge.on_cmd("joinvc", about={
+@userge.cmd("joinvc", about={
     'header': "Join Video-Chat",
     'flags': {
         '-as': "Join as any of your public channel.",
@@ -201,7 +201,7 @@ async def joinvc(msg: Message):
     await reply_text(msg, "`Joined VideoChat Successfully`", del_in=5)
 
 
-@userge.on_cmd("leavevc", about={
+@userge.cmd("leavevc", about={
     'header': "Leave Video-Chat",
     'usage': "{tr}leavevc"})
 async def leavevc(msg: Message):
@@ -218,7 +218,7 @@ async def leavevc(msg: Message):
         await reply_text(msg, "`I didn't find any Video-Chat to leave`")
 
 
-@userge.on_cmd("vcmode", about={
+@userge.cmd("vcmode", about={
     'header': "Toggle to enable or disable play and queue commands for all users"})
 async def toggle_vc(msg: Message):
     """ toggle enable/disable vc cmds """
@@ -238,7 +238,7 @@ async def toggle_vc(msg: Message):
     await reply_text(msg, text, del_in=5)
 
 
-@userge.on_cmd("play", about={
+@userge.cmd("play", about={
     'header': "play or add songs to queue",
     'flags': {
         '-v': "Stream as video.",
@@ -252,7 +252,7 @@ async def _play(msg: Message):
     return await play_music(msg, False)
 
 
-@userge.on_cmd("forceplay", about={
+@userge.cmd("forceplay", about={
     'header': "Force play with skip the current song and "
               "Play your song on #1 Position",
     'flags': {
@@ -264,7 +264,7 @@ async def _forceplay(msg: Message):
     return await play_music(msg, True)
 
 
-@userge.on_cmd("helpvc",
+@userge.cmd("helpvc",
                about={'header': "help for video chat plugin"},
                trigger=config.PUBLIC_TRIGGER,
                allow_private=False,
@@ -305,7 +305,7 @@ async def _help(msg: Message):
                 break
 
 
-@userge.on_cmd("current", about={
+@userge.cmd("current", about={
     'header': "View Current playing Song.",
     'usage': "{tr}current"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -321,7 +321,7 @@ async def current(msg: Message):
     )
 
 
-@userge.on_cmd("queue", about={
+@userge.cmd("queue", about={
     'header': "View Queue of Songs",
     'usage': "{tr}queue"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -353,7 +353,7 @@ async def view_queue(msg: Message):
             await reply_text(msg, m)
 
 
-@userge.on_cmd("volume", about={
+@userge.cmd("volume", about={
     'header': "Set volume",
     'usage': "{tr}volume\n{tr}volume 69"})
 @vc_chat
@@ -382,7 +382,7 @@ async def set_volume(msg: Message):
             await reply_text(msg, "Input not found!")
 
 
-@userge.on_cmd("skip", about={
+@userge.cmd("skip", about={
     'header': "Skip Song",
     'usage': "{tr}skip\n{tr}skip 2"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -412,7 +412,7 @@ async def skip_music(msg: Message):
     await skip_song()
 
 
-@userge.on_cmd("pause", about={
+@userge.cmd("pause", about={
     'header': "Pause Song.",
     'usage': "{tr}pause"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -427,7 +427,7 @@ async def pause_music(msg: Message):
     await reply_text(msg, "⏸️ **Paused** Music Successfully")
 
 
-@userge.on_cmd("seek", about={
+@userge.cmd("seek", about={
     'header': "Seek Song x sec forward / backward.",
     'flags': {
         '-to': "To jump to a specific timestamp"},
@@ -466,7 +466,7 @@ async def seek_music_player(msg: Message):
         )
 
 
-@userge.on_cmd("replay", about={
+@userge.cmd("replay", about={
     'header': "replay the current song from beginning.",
     'flags': {
         '-v': "To force play the current song as video",
@@ -486,7 +486,7 @@ async def replay_song_(msg: Message):
         await reply_text(msg, 'No songs found to play.')
 
 
-@userge.on_cmd("resume", about={
+@userge.cmd("resume", about={
     'header': "Resume Song.",
     'usage': "{tr}resume"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -506,7 +506,7 @@ async def resume_music(msg: Message):
     await reply_text(msg, "◀️ **Resumed** Music Successfully")
 
 
-@userge.on_cmd("shuffle", about={
+@userge.cmd("shuffle", about={
     'header': "Shuffle songs in queue.",
     'usage': "{tr}shuffle"},
     trigger=config.PUBLIC_TRIGGER, check_client=True,
@@ -519,7 +519,7 @@ async def shuffle_queue(msg: Message):
     await view_queue(msg)
 
 
-@userge.on_cmd("stopvc", about={
+@userge.cmd("stopvc", about={
     'header': "Stop vc and clear Queue.",
     'usage': "{tr}stopvc"})
 @vc_chat

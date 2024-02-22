@@ -100,7 +100,7 @@ async def _edit_ban_rights(message: Message, rights: Optional[ChatBannedRights] 
             banned_rights=rights))
 
 
-@userge.on_cmd(
+@userge.cmd(
     "lock", about={
         'header': "use this to lock group permissions",
         'description': "Allows you to lock some common permission types in the chat.\n"
@@ -148,7 +148,7 @@ async def lock_perm(message: Message):
             f"**ERROR:** `{e_f}`", del_in=5)
 
 
-@userge.on_cmd("unlock", about={
+@userge.cmd("unlock", about={
     'header': "use this to unlock group permissions",
     'description': "Allows you to unlock some common permission types in the chat.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -200,7 +200,7 @@ async def unlock_perm(message: Message):
             f"**ERROR:** `{e_f}`", del_in=5)
 
 
-@userge.on_cmd("vperm", about={
+@userge.cmd("vperm", about={
     'header': "use this to view group permissions",
     'description': "Allows you to view permission types on/off status in the chat."},
     allow_channels=False, allow_bots=False, allow_private=False)

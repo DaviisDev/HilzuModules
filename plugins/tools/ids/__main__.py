@@ -9,7 +9,7 @@
 from userge import userge, Message
 
 
-@userge.on_cmd("ids", about={
+@userge.cmd("ids", about={
     'header': "display ids",
     'usage': "reply {tr}ids any message, file or just send this command"})
 async def getids(message: Message):

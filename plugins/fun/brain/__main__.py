@@ -13,7 +13,7 @@ import asyncio
 from userge import userge
 
 
-@userge.on_cmd("brain$", about={'header': "Dump your Brain into Trash"})
+@userge.cmd("brain$", about={'header': "Dump your Brain into Trash"})
 async def brain_func(message):
     animation_chars = [
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",

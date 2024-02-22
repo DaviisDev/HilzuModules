@@ -15,7 +15,7 @@ import requests
 from userge import userge, Message
 
 
-@userge.on_cmd("github", about={
+@userge.cmd("github", about={
     'header': "Get info about an GitHub User",
     'flags': {'-l': "repo limit : default to 5"},
     'usage': ".github [flag] [username]",

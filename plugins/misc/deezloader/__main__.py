@@ -29,7 +29,7 @@ ARL_HELP = """**Oops, Time to Help Yourself**
 After getting Arl token Config `ARL_TOKEN` var in heroku"""
 
 
-@userge.on_cmd("deezload", about={
+@userge.cmd("deezload", about={
     'header': "DeezLoader for Userge",
     'description': "Download Songs/Albums/Playlists via "
                    "Spotify or Deezer Links. "

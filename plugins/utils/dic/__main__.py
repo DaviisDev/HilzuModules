@@ -14,7 +14,7 @@ LOG = userge.getLogger(__name__)  # logger object
 CHANNEL = userge.getCLogger(__name__)  # channel logger object
 
 
-@userge.on_cmd("dic", about={
+@userge.cmd("dic", about={
     'header': "English Dictionary-telegram",
     'usage': "{tr}dic [word]",
     'examples': 'word : Search for any word'})

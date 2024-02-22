@@ -17,7 +17,7 @@ import requests
 from userge import userge, Message
 
 
-@userge.on_cmd("carb", about={
+@userge.cmd("carb", about={
     'header': "Create a carbon",
     'usage': "{tr}carb [text or reply to msg | theme-name | colour code]",
     'examples': "{tr}carb Carbon Plugin by Sumanjay | one-dark | #FF0000",

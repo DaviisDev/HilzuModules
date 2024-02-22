@@ -20,7 +20,7 @@ async def _init():
         scheduler.start()
 
 
-@userge.on_cmd("nightmode", about={
+@userge.cmd("nightmode", about={
     'header': "Enable or disable nightmode (locks the chat at specified intervals everyday)",
     'flags': {
         '-s': "Specify starting time in 24hr format.",

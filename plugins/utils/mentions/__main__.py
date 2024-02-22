@@ -24,7 +24,7 @@ async def _init():
         TOGGLE = bool(data["data"])
 
 
-@userge.on_cmd(
+@userge.cmd(
     "mentions",
     about="Toggles Mentions, "
           "if enabled Bot will send Message if anyone mention you."

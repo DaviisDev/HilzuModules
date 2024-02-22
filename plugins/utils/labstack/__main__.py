@@ -26,7 +26,7 @@ from userge import userge, config, Message
 from userge.utils import progress, humanbytes
 
 
-@userge.on_cmd("labstack", about={
+@userge.cmd("labstack", about={
     'header': "Uploads and shares files for free on Labstack,"
     "without any restriction on file size and speed.",
     'usage': "{tr}labstack : [Direct Link | Reply to Telegram Media]",

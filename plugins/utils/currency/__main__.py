@@ -20,7 +20,7 @@ CHANNEL = userge.getCLogger(__name__)
 LOG = userge.getLogger(__name__)
 
 
-@userge.on_cmd("cr", about={
+@userge.cmd("cr", about={
     'header': "use this to convert currency & get exchange rate",
     'description': "Convert currency & get exchange rates.",
     'examples': "{tr}cr 1 BTC USD"})

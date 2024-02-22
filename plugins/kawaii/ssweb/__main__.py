@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "ssweb", about={
         'header': "get a screenshot from website",
         'usage': "{tr}ssweb url"}

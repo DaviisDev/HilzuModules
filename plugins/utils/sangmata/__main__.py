@@ -14,7 +14,7 @@ from userge import userge, Message
 from userge.utils.exceptions import StopConversation
 
 
-@userge.on_cmd("sg", about={
+@userge.cmd("sg", about={
     'header': "Sangmata gives you user's last updated names and usernames.",
     'flags': {
         '-u': "To get Username history of a User"},

@@ -20,7 +20,7 @@ from hydrogram import enums
 MSGS = {}
 
 
-@userge.on_cmd("sd (?:(\\d+)?\\s?(.+))", about={
+@userge.cmd("sd (?:(\\d+)?\\s?(.+))", about={
     'header': "make self-destructable messages",
     'usage': "{tr}sd [test]\n{tr}sd [timeout in seconds] [text]"})
 async def selfdestruct(message: Message):

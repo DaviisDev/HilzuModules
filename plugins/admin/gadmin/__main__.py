@@ -40,7 +40,7 @@ channel_delete = filters.create(
                           and query.chat.id in gadmin.ENABLED_CHATS))
 
 
-@userge.on_cmd("promote", about={
+@userge.cmd("promote", about={
     'header': "use this to promote group members",
     'description': "Provides admin rights to the person in the supergroup.\n"
                    "you can also add custom title while promoting new admin.\n"
@@ -87,7 +87,7 @@ async def promote_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{chat_id}`)")
 
 
-@userge.on_cmd("demote", about={
+@userge.cmd("demote", about={
     'header': "use this to demote group members",
     'description': "Remove admin rights from admin in the supergroup.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -123,7 +123,7 @@ async def demote_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{chat_id}`)")
 
 
-@userge.on_cmd("ban", about={
+@userge.cmd("ban", about={
     'header': "use this to ban group members",
     'description': "Ban member from supergroup.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -193,7 +193,7 @@ def _get_period_and_time(flags: Dict[str, str]) -> Tuple[int, str]:
     return _period, _time
 
 
-@userge.on_cmd("unban", about={
+@userge.cmd("unban", about={
     'header': "use this to unban group members",
     'description': "Unban member from supergroup.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -236,7 +236,7 @@ async def unban_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{message.chat.id}`)")
 
 
-@userge.on_cmd("kick",
+@userge.cmd("kick",
                about={'header': "use this to kick group members",
                       'description': "Kick member from supergroup. "
                       "member can rejoin the group again if they want.\n"
@@ -269,7 +269,7 @@ async def kick_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{message.chat.id}`)", log=True)
 
 
-@userge.on_cmd("mute", about={
+@userge.cmd("mute", about={
     'header': "use this to mute group members",
     'description': "Mute member in the supergroup. you can only use one flag for command.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -310,7 +310,7 @@ async def mute_usr(message: Message):
             f"REASON: `{reason}`", log=True)
 
 
-@userge.on_cmd("unmute", about={
+@userge.cmd("unmute", about={
     'header': "use this to unmute group members",
     'description': "Unmute member from supergroup.\n"
                    "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -343,7 +343,7 @@ async def unmute_usr(message: Message):
             f"CHAT: `{message.chat.title}` (`{message.chat.id}`)")
 
 
-@userge.on_cmd("zombies",
+@userge.cmd("zombies",
                about={'header': "use this to clean zombie accounts",
                       'description': "check & remove zombie (deleted) accounts from supergroup.\n"
                       "[NOTE: Requires proper admin rights in the chat!!!]",
@@ -421,7 +421,7 @@ async def zombie_clean(message: Message):
                 r"ZOMBIE COUNT: `WOOHOO group is clean.. \^o^/`")
 
 
-@userge.on_cmd("pin", about={
+@userge.cmd("pin", about={
     'header': "use this to pin & unpin messages",
     'description': "pin & unpin messages in groups with or without notify to members.",
     'flags': {
@@ -465,7 +465,7 @@ async def pin_msgs(message: Message):
             await message.err(str(e_f))
 
 
-@userge.on_cmd("gpic", about={
+@userge.cmd("gpic", about={
     'header': "use this to set or delete chat photo",
     'description': "set new chat photo or delete current chat photo",
     'flags': {
@@ -516,7 +516,7 @@ async def chatpic_func(message: Message):
         await message.err("invalid flag type")
 
 
-@userge.on_cmd("smode", about={
+@userge.cmd("smode", about={
     'header': "turn on/off chat slow mode",
     'description': "use this to turn off or switch between chat slow mode \n"
                    "available 6 modes, s10/s30/m1/m5/m15/h1",
@@ -586,7 +586,7 @@ async def smode_switch(message: Message):
         await message.err("invalid flag type/mode..")
 
 
-@userge.on_cmd("no_channels", about={
+@userge.cmd("no_channels", about={
     'header': "Enable to delete messages from channels.",
     'description': "Restrict the users from chatting in group as their channels.\n"
                    "Use appropriate flags to toggle between ban and delete_only.",
@@ -653,7 +653,7 @@ async def enable_ban(message: Message):
             await message.edit('Enabled with delete mode')
 
 
-@userge.on_cmd("allow_channel",
+@userge.cmd("allow_channel",
                about={'header': "Whitelist a channel to from send_as channel.",
                       'description': "To allow the replied channel or given channel id / username "
                       "to chat as channel, even if restriction is enabled."},
@@ -677,7 +677,7 @@ async def allow_a_channel(message: Message):
     await message.edit(f'Successfully Whitelisted {channel.title} (`{channel_id}`)')
 
 
-@userge.on_cmd("disallow_channel",
+@userge.cmd("disallow_channel",
                about={'header': "Remove an already whitelisted channel from allowed list.",
                       'description': "To disallow the replied channel or given channel id/username"
                       "to chat as channel, if the channel is already whitelisted"},

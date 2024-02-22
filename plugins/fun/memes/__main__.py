@@ -23,7 +23,7 @@ from hydrogram import enums
 from userge import userge, Message, pool
 
 
-@userge.on_cmd("yp$", about={"header": "Barra de progresso do ano"})
+@userge.cmd("yp$", about={"header": "Barra de progresso do ano"})
 async def progresss(message):
     x = datetime.datetime.now()
     day = int(x.strftime("%j"))
@@ -59,7 +59,7 @@ async def progresss(message):
     await message.edit(message_out)
 
 
-@userge.on_cmd("fds", about={"header": "fodase?"})
+@userge.cmd("fds", about={"header": "fodase?"})
 async def fds_(message: Message):
     out_str = f"""
 F
@@ -79,7 +79,7 @@ F
     await message.edit(f'`{out_str}`')
 
 
-@userge.on_cmd("rt", about={"header": "rt message"}, trigger="", allow_via_bot=False)
+@userge.cmd("rt", about={"header": "rt message"}, trigger="", allow_via_bot=False)
 async def rt_(message: Message):
     """rt mensagem"""
     retweet = message.reply_to_message
@@ -94,7 +94,7 @@ async def rt_(message: Message):
         pass
 
 
-@userge.on_cmd("iam", about={"header": "i am gay?"})
+@userge.cmd("iam", about={"header": "i am gay?"})
 async def iam_(message: Message):
     reply_ = message.reply_to_message
     if not reply_:
@@ -106,7 +106,7 @@ async def iam_(message: Message):
     await message.edit(msg_)
 
 
-@userge.on_cmd(r"(?:Kek|:/)$",
+@userge.cmd(r"(?:Kek|:/)$",
                about={'header': "Check yourself, hint: `:/`"}, name='Kek',
                trigger='', allow_via_bot=False)
 async def kek_(message: Message):
@@ -116,7 +116,7 @@ async def kek_(message: Message):
         await message.try_to_edit(":" + kek[i % 2])
 
 
-@userge.on_cmd(r"(?:Lol|-_-)$",
+@userge.cmd(r"(?:Lol|-_-)$",
                about={'header': "Check yourself, hint: `-_-`"}, name='Lol',
                trigger='', allow_via_bot=False)
 async def lol_(message: Message):
@@ -129,7 +129,7 @@ async def lol_(message: Message):
         await message.try_to_edit(lol, parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd(r"(?:Fun|;_;)$",
+@userge.cmd(r"(?:Fun|;_;)$",
                about={'header': "Check yourself, hint: `;_;`"}, name="Fun",
                trigger='', allow_via_bot=False)
 async def fun_(message: Message):
@@ -142,7 +142,7 @@ async def fun_(message: Message):
         await message.try_to_edit(fun, parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("Oof$", about={'header': "Ooooof"},
+@userge.cmd("Oof$", about={'header': "Ooooof"},
                trigger='', allow_via_bot=False)
 async def Oof_(message: Message):
     """Oof"""
@@ -152,7 +152,7 @@ async def Oof_(message: Message):
         await message.try_to_edit(Oof)
 
 
-@userge.on_cmd(r"(?:Hmm|hmm)$", about={'header': "Hmmmmm"},
+@userge.cmd(r"(?:Hmm|hmm)$", about={'header': "Hmmmmm"},
                trigger='', allow_via_bot=False)
 async def Hmm_(message: Message):
     """Hmm"""
@@ -179,25 +179,25 @@ async def check_and_send(message: Message, *args, **kwargs):
         await message.edit(*args, **kwargs)
 
 
-@userge.on_cmd("fp$", about={'header': "Facepalm :P"})
+@userge.cmd("fp$", about={'header': "Facepalm :P"})
 async def facepalm_(message: Message):
     """facepalm_"""
     await check_and_send(message, "🤦‍♂")
 
 
-@userge.on_cmd("cry$", about={'header': "y u du dis, i cri"})
+@userge.cmd("cry$", about={'header': "y u du dis, i cri"})
 async def cry_(message: Message):
     """cry"""
     await check_and_send(message, choice(CRI), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("insult$", about={'header': "Check yourself ;)"})
+@userge.cmd("insult$", about={'header': "Check yourself ;)"})
 async def insult_(message: Message):
     """insult"""
     await check_and_send(message, choice(INSULT_STRINGS), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("hi", about={
+@userge.cmd("hi", about={
     'header': "Greet everyone!",
     'usage': "{tr}hi\n{tr}hi [emoji | character]\n{tr}hi [emoji | character] [emoji | character]"})
 async def hi_(message: Message):
@@ -228,7 +228,7 @@ async def hi_(message: Message):
         await message.edit(pay)
 
 
-@userge.on_cmd("react", about={
+@userge.cmd("react", about={
     'header': "Make your userbot react to everything",
     'types': ['happy', 'thinking', 'waving', 'wtf', 'love', 'confused', 'dead', 'sad', 'dog'],
     'usage': "{tr}react [type]",
@@ -259,37 +259,37 @@ async def react_(message: Message):
     await check_and_send(message, out, parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("shg$", about={'header': "Shrug at it !!"})
+@userge.cmd("shg$", about={'header': "Shrug at it !!"})
 async def shrugger(message: Message):
     """shrugger"""
     await check_and_send(message, choice(SHGS), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("chase$", about={'header': "You better start running"})
+@userge.cmd("chase$", about={'header': "You better start running"})
 async def chase_(message: Message):
     """chase"""
     await check_and_send(message, choice(CHASE_STR), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("run$", about={'header': "Let Me Run, run, RUNNN!"})
+@userge.cmd("run$", about={'header': "Let Me Run, run, RUNNN!"})
 async def run_(message: Message):
     """run"""
     await check_and_send(message, choice(RUNS_STR), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("metoo$", about={'header': "Haha yes"})
+@userge.cmd("metoo$", about={'header': "Haha yes"})
 async def metoo_(message: Message):
     """metoo"""
     await check_and_send(message, choice(METOOSTR), parse_mode=enums.ParseMode.HTML)
 
 
-@userge.on_cmd("10iq$", about={'header': "You retard !!"}, name="10iq")
+@userge.cmd("10iq$", about={'header': "You retard !!"}, name="10iq")
 async def iqless(message: Message):
     """iqless"""
     await check_and_send(message, "♿")
 
 
-@userge.on_cmd("moon$", about={'header': "kensar moon animation"})
+@userge.cmd("moon$", about={'header': "kensar moon animation"})
 async def moon_(message: Message):
     """moon"""
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
@@ -301,7 +301,7 @@ async def moon_(message: Message):
         await message.delete()
 
 
-@userge.on_cmd("clock$", about={'header': "kensar clock animation"})
+@userge.cmd("clock$", about={'header': "kensar clock animation"})
 async def clock_(message: Message):
     """clock"""
     deq = deque(list("🕚🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
@@ -313,7 +313,7 @@ async def clock_(message: Message):
         await message.delete()
 
 
-@userge.on_cmd("bt$", about={
+@userge.cmd("bt$", about={
     'header': "Believe me, you will find this useful",
     'usage': "{tr}bt [reply to msg]"})
 async def bluetext(message: Message):
@@ -324,7 +324,7 @@ async def bluetext(message: Message):
             "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?")
 
 
-@userge.on_cmd("f (.+)", about={
+@userge.cmd("f (.+)", about={
     'header': "Pay Respects",
     'usage': "{tr}f [emoji | character]"})
 async def payf_(message: Message):
@@ -337,7 +337,7 @@ async def payf_(message: Message):
     await message.edit(pay)
 
 
-@userge.on_cmd("clap", about={
+@userge.cmd("clap", about={
     'header': "Praise people!",
     'usage': "{tr}clap [input | reply to msg]"})
 async def clap_(message: Message):
@@ -352,7 +352,7 @@ async def clap_(message: Message):
     await message.edit(reply_text)
 
 
-@userge.on_cmd("(\\w+)say (.+)", about={
+@userge.cmd("(\\w+)say (.+)", about={
     'header': "cow which says things",
     'usage': "{tr}[any cowacter]say [text]",
     'cowacters': f"`{'`,    `'.join(cow.COWACTERS)}`"}, name="cowsay")
@@ -370,7 +370,7 @@ async def cowsay_(message: Message):
     await message.edit(f"`{cheese.milk(text).replace('`', '´')}`")
 
 
-@userge.on_cmd("coinflip", about={
+@userge.cmd("coinflip", about={
     'header': "Flip a coin !!",
     'usage': "{tr}coinflip [heads | tails]"})
 async def coin_(message: Message):
@@ -400,7 +400,7 @@ async def coin_(message: Message):
             await message.edit("The coin landed on: **Tails**.")
 
 
-@userge.on_cmd("slap", about={
+@userge.cmd("slap", about={
     'header': "reply to slap them with random objects !!",
     'usage': "{tr}slap [input | reply to msg]"}, allow_channels=False)
 async def slap_(message: Message):
@@ -428,7 +428,7 @@ async def slap_(message: Message):
         await message.reply(caption)
 
 
-@userge.on_cmd("(yes|no|maybe|decide)$", about={
+@userge.cmd("(yes|no|maybe|decide)$", about={
     'header': "Make a quick decision",
     'flags': {'-gif': "for gif"},
     'examples': ['{tr}decide', '{tr}yes', '{tr}no', '{tr}maybe']}, name="decide")
@@ -457,7 +457,7 @@ async def decide_(message: Message):
     os.remove(path)
 
 
-@userge.on_cmd("cp", about={
+@userge.cmd("cp", about={
     'header': "Copypasta the famous meme",
     'usage': "{tr}cp [input | reply to msg]"})
 async def copypasta(message: Message):
@@ -486,7 +486,7 @@ async def copypasta(message: Message):
     await message.edit(reply_text)
 
 
-@userge.on_cmd("vapor", about={
+@userge.cmd("vapor", about={
     'header': "Vaporize everything!",
     'usage': "{tr}vapor [input | reply to msg]"})
 async def vapor_(message: Message):
@@ -506,7 +506,7 @@ async def vapor_(message: Message):
     await message.edit("".join(reply_text))
 
 
-@userge.on_cmd("str", about={
+@userge.cmd("str", about={
     'header': "Stretch it",
     'usage': "{tr}str [input | reply to msg]"})
 async def stretch(message: Message):
@@ -519,7 +519,7 @@ async def stretch(message: Message):
         sub(r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])", (r"\1" * randint(3, 10)), input_str))
 
 
-@userge.on_cmd("zal", about={
+@userge.cmd("zal", about={
     'header': "Invoke the feeling of chaos",
     'usage': "{tr}zal [input | reply to msg]"})
 async def zal_(message: Message):
@@ -545,7 +545,7 @@ async def zal_(message: Message):
     await message.edit("".join(reply_text))
 
 
-@userge.on_cmd("owo", about={
+@userge.cmd("owo", about={
     'header': "UwU",
     'usage': "{tr}owo [input | reply to msg]"})
 async def owo_(message: Message):
@@ -564,7 +564,7 @@ async def owo_(message: Message):
     await message.edit(reply_text)
 
 
-@userge.on_cmd("mock", about={
+@userge.cmd("mock", about={
     'header': "Do it and find the real fun",
     'usage': "{tr}mock [input | reply to msg]"})
 async def mock_(message: Message):
@@ -583,7 +583,7 @@ async def mock_(message: Message):
     await message.edit("".join(reply_text))
 
 
-@userge.on_cmd("lfy", about={
+@userge.cmd("lfy", about={
     'header': "Let me Google that for you real quick !!",
     'usage': "{tr}lfy [query | reply to msg]"})
 async def lfy_(message: Message):
@@ -599,7 +599,7 @@ async def lfy_(message: Message):
     await message.edit(f"Here you are, help yourself.\n[{query}]({r.json()['shorturl']})")
 
 
-@userge.on_cmd("scam", about={
+@userge.cmd("scam", about={
     'header': "Create fake chat actions, for fun.",
     'available actions': [
         'typing (default)', 'playing', 'upload_photo', 'upload_video',
@@ -644,7 +644,7 @@ async def scam_(message: Message):
         await message.delete()
 
 
-@userge.on_cmd("try", about={
+@userge.cmd("try", about={
     'header': "send dart or dice randomly",
     'usage': "{tr}try [send to chat or anyone]"})
 async def dice_gen(message: Message):
@@ -655,7 +655,7 @@ async def dice_gen(message: Message):
 
 
 
-@userge.on_cmd("sexo", about={"header": "sexoooooooooooo"})
+@userge.cmd("sexo", about={"header": "sexoooooooooooo"})
 async def snake_(message: Message):
     """muito sexo"""
     out = f"""

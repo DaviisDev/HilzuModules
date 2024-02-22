@@ -17,7 +17,7 @@ import requests
 from userge import userge, Message, pool
 
 
-@userge.on_cmd("zippy", about={
+@userge.cmd("zippy", about={
     'header': "generate Direct link of zippyshare url",
     'usage': "{tr}zippy : [Zippyshare Link ]",
     'examples': "{tr}zippy https://www10.zippyshare.com/v/dyh988sh/file.html"})

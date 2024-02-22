@@ -13,7 +13,7 @@ from requests.utils import requote_uri
 from userge import userge, Message
 
 
-@userge.on_cmd("requote", about={
+@userge.cmd("requote", about={
     'header': "Requote Text",
     'description': "get requoted text from a normal text",
     'usage': "{tr}requote [text]"})

@@ -41,7 +41,7 @@ async def cache_admins(msg: Message):
     ADMINS[msg.chat.id] = au_ids
 
 
-@userge.on_cmd("setflood", about={
+@userge.cmd("setflood", about={
     'header': "Set Anti-Flood limit to take Action\n"
               "Pass <on/off> to turn Off and On.",
     'usage': "{tr}setflood 5\n"
@@ -104,7 +104,7 @@ async def set_flood(msg: Message):
         await msg.err("Invalid argument!")
 
 
-@userge.on_cmd("setmode", about={
+@userge.cmd("setmode", about={
     'header': "Set Anti-Flood Mode",
     'description': "When User Reached Limit of Flooding "
                    "He will Got Ban/Kick/Mute By Group Admins",
@@ -131,7 +131,7 @@ async def set_mode(msg: Message):
         await msg.err("Invalid argument!")
 
 
-@userge.on_cmd("vflood", about={
+@userge.cmd("vflood", about={
     'header': "View Current Anti Flood Settings",
     'usage': "{tr}vflood"}, allow_private=False)
 async def view_flood_settings(msg: Message):

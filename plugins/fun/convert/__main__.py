@@ -9,7 +9,7 @@
 from userge import userge, Message
 
 
-@userge.on_cmd("small", about={
+@userge.cmd("small", about={
     'header': "Make caps smaller",
     'usage': "{tr}small [text | reply to msg]"})
 async def small_(message: Message):
@@ -24,7 +24,7 @@ async def small_(message: Message):
                                                     "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘqʀꜱᴛᴜᴠᴡxʏᴢ")))
 
 
-@userge.on_cmd("lower", about={
+@userge.cmd("lower", about={
     'header': "Convert text to lowwer",
     'usage': "{tr}lower [text | reply to msg]"})
 async def lower_(message: Message):
@@ -38,7 +38,7 @@ async def lower_(message: Message):
     await message.edit(text.lower())
 
 
-@userge.on_cmd("upper", about={
+@userge.cmd("upper", about={
     'header': "Convert text to upper",
     'usage': "{tr}upper [text | reply to msg]"})
 async def upper_(message: Message):

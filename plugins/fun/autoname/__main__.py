@@ -63,7 +63,7 @@ async def _init() -> None:
         AUTONAME_TIMEOUT = a_t['data']
 
 
-@userge.on_cmd("autoname", about={
+@userge.cmd("autoname", about={
     'header': "Auto Updates your Profile name with Diffrent Fonts",
     'usage': "{tr}autoname\n{tr}autoname [new name]"}, allow_via_bot=False)
 async def auto_name(msg: Message):
@@ -105,7 +105,7 @@ async def auto_name(msg: Message):
     UPDATION = loop.create_task(_autoname_worker())
 
 
-@userge.on_cmd("santo", about={
+@userge.cmd("santo", about={
     'header': "Set Auto Name timeout",
     'usage': "{tr}santo [timeout in seconds]",
     'examples': "{tr}santo 30"})
@@ -124,7 +124,7 @@ async def set_name_timeout(message: Message):
         f"`Set Auto Name timeout as {t_o} seconds!`", del_in=5)
 
 
-@userge.on_cmd("vanto", about={'header': "View Auto Name timeout"})
+@userge.cmd("vanto", about={'header': "View Auto Name timeout"})
 async def view_name_timeout(message: Message):
     """ view Auto Name timeout """
     await message.edit(

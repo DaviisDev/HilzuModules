@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "cnf",
     about={
         "header": "Install any command on any operating system.",

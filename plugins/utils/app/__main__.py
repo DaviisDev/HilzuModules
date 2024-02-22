@@ -19,7 +19,7 @@ from userge import userge, Message
 DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
 
 
-@userge.on_cmd(
+@userge.cmd(
     "app",
     about={
         "header": "Search application details of any app in play store.",
@@ -66,7 +66,7 @@ async def app(message: Message):
         await message.err(err)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "magisk",
     about={
         "header": "Fetch all magisk release from source.",
@@ -90,7 +90,7 @@ async def magisk(message: Message):
         await message.edit(releases)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "device",
     about={"header": "Search device with codename",
            "usage": "{tr}device [codename]"},

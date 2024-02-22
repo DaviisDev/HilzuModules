@@ -18,7 +18,7 @@ regex: str = r'(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.' \
 max_chars = 3900
 
 
-@userge.on_cmd("con", about={
+@userge.cmd("con", about={
     'header': "Scrape article content",
     'usage': "{tr}con [link | reply to msg]"})
 async def con_(message: Message):

@@ -25,7 +25,7 @@ from .. import removebg
 IMG_PATH = config.Dynamic.DOWN_PATH + "dl_image.jpg"
 
 
-@userge.on_cmd('removebg', about={
+@userge.cmd('removebg', about={
     'header': "Removes Background from Image (50 Calls per Month in the free API)",
     'usage': "{tr}removebg [reply to any photo | direct link of photo]"})
 async def remove_background(message: Message):

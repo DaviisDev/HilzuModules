@@ -28,7 +28,7 @@ arq = ARQ(
 LOGGER = userge.getLogger(__name__)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "saavn",
     about={
         "header": "Search and Download Music",
@@ -73,7 +73,7 @@ async def savn(message: Message):
     os.remove(song_path)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "deezer",
     about={
         "header": "Download from Deezer",

@@ -18,7 +18,7 @@ from userge import userge, Message, config
 from userge.utils import take_screen_shot, progress
 
 
-@userge.on_cmd("genss", about={
+@userge.cmd("genss", about={
     'header': "Screen Shot Generator",
     'description': "Generate Random Screen Shots from any video "
                    " **[NOTE: If no frame count is passed, default"

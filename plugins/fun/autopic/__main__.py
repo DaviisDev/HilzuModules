@@ -41,7 +41,7 @@ async def _init() -> None:
         AUTOPIC_TIMEOUT = pic_data.get("data")
 
 
-@userge.on_cmd(
+@userge.cmd(
     "autopic", about={
         'header': "set profile picture",
         'usage': "{tr}autopic\n{tr}autopic [image path]\nset timeout using {tr}sapicto"},
@@ -92,7 +92,7 @@ async def autopic(message: Message):
     UPDATE_PIC = asyncio.get_event_loop().create_task(apic_worker())
 
 
-@userge.on_cmd("sapicto (\\d+)", about={
+@userge.cmd("sapicto (\\d+)", about={
     'header': "Set auto profile picture timeout",
     'usage': "{tr}sapicto [timeout in seconds]",
     'examples': "{tr}sapicto 60"})
@@ -111,7 +111,7 @@ async def set_app_timeout(message: Message):
         f"`Set auto profile picture timeout as {t_o} seconds!`", del_in=3)
 
 
-@userge.on_cmd("vapicto", about={'header': "View auto profile picture timeout"})
+@userge.cmd("vapicto", about={'header': "View auto profile picture timeout"})
 async def view_app_timeout(message: Message):
     """ view profile picture timeout """
     await message.edit(

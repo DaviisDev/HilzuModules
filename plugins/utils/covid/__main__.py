@@ -14,7 +14,7 @@ from covid import Covid
 from userge import userge, Message, pool
 
 
-@userge.on_cmd("covid", about={
+@userge.cmd("covid", about={
     'header': "see covid details",
     'description': "The current real time situation of the COVID-19 patients reported in worldwide",
     'flags': {'-l': "list countries"},

@@ -11,7 +11,7 @@ import requests
 from userge import userge, Message
 
 
-@userge.on_cmd("head", about={
+@userge.cmd("head", about={
     'header': "View headers in URL",
     'flags': {
         '-r': "allow redirects",

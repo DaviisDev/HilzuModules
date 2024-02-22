@@ -9,7 +9,7 @@
 from userge import userge, Message
 
 
-@userge.on_cmd("type", about={
+@userge.cmd("type", about={
     'header': "Simulate a typewriter",
     'usage': "{tr}type [text]"})
 async def type_(message: Message):

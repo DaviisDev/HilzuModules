@@ -138,7 +138,7 @@ async def send_rss_to_telegram(client, args: dict, path: str = None):
         await client.send_message(**args)
 
 
-@userge.on_cmd("addfeed", about={
+@userge.cmd("addfeed", about={
     'header': "Add new Feed Url to get regular Updates from it.",
     'usage': "{tr}addfeed url"})
 async def add_rss_feed(msg: Message):
@@ -155,7 +155,7 @@ async def add_rss_feed(msg: Message):
     await msg.edit(out_str, log=__name__)
 
 
-@userge.on_cmd("delfeed", about={
+@userge.cmd("delfeed", about={
     'header': "Delete a existing Feed Url from Database.",
     'flags': {'-all': 'Delete All Urls.'},
     'usage': "{tr}delfeed url"})
@@ -171,7 +171,7 @@ async def delete_rss_feed(msg: Message):
     await msg.edit(out_str, log=__name__)
 
 
-@userge.on_cmd("listrss", about={
+@userge.cmd("listrss", about={
     'header': "List all feed URLs that you Subscribed.",
     'usage': "{tr}listrss"})
 async def list_rss_feed(msg: Message):

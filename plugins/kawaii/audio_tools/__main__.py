@@ -14,7 +14,7 @@ from userge import userge, Message, config
 from userge.utils import runcmd
 
 
-@userge.on_cmd(
+@userge.cmd(
     "extractaudio", about={
         'header': "extract audio from a video",
         'usage': "{tr}extractaudio [reply video]"},
@@ -55,7 +55,7 @@ async def extract_audio(message: Message):
         return
 
 
-@userge.on_cmd(
+@userge.cmd(
     "makevoice", about={
         'header': "convert audio/video in audio voice file",
         'usage': "{tr}makevoice [reply video or audio]"},

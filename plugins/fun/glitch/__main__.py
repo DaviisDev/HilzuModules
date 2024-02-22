@@ -19,7 +19,7 @@ from userge.utils import take_screen_shot, runcmd
 Glitched = config.Dynamic.DOWN_PATH + "glitch.gif"
 
 
-@userge.on_cmd("glitch", about={
+@userge.cmd("glitch", about={
     'header': "Reply to any media to glitch",
     'flags': {
         '-s': "Upload glitched IMG as a Sticker"},

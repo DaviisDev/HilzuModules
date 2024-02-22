@@ -19,7 +19,7 @@ LOGGER = userge.getLogger(__name__)
 CHANNEL = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("rename", about={
+@userge.cmd("rename", about={
     'header': "Rename telegram files",
     'flags': {
         '-d': "upload as document",
@@ -38,7 +38,7 @@ async def rename_(message: Message):
         await message.err("reply to media to rename it")
 
 
-@userge.on_cmd("convert", about={
+@userge.cmd("convert", about={
     'header': "Convert telegram files",
     'usage': "reply {tr}convert to any media"}, del_pre=True, check_downpath=True)
 async def convert_(message: Message):
@@ -51,7 +51,7 @@ async def convert_(message: Message):
         await message.err("reply to media to convert it")
 
 
-@userge.on_cmd("upload", about={
+@userge.cmd("upload", about={
     'header': "Upload files to telegram",
     'flags': {
         '-d': "upload as document",

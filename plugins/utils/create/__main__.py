@@ -9,7 +9,7 @@
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "channel",
     about={
         'header': "Creates a channel",

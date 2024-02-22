@@ -17,7 +17,7 @@ from . import COUNTRY_CITY
 LOG = userge.getLogger(__name__)  # logger object
 
 
-@userge.on_cmd("dt", about={
+@userge.cmd("dt", about={
     'header': "Get the time and date of a City/Country/Timezone.",
     'flags': {
         '-list | -l': "Gives a list of all Country/City Combos.",

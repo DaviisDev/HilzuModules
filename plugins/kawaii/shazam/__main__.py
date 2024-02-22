@@ -16,7 +16,7 @@ from userge import userge, Message, config
 shazam = Shazam()
 
 
-@userge.on_cmd(
+@userge.cmd(
     "whichsong", about={
         'header': "Use shazam to find the name and artist of a song",
         'usage': "{tr}whichisong [reply audio]"},

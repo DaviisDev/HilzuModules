@@ -104,7 +104,7 @@ async def dispatch(message: Message, logos: List[Tuple[str]]):
         shutil.rmtree("temp_logos/", ignore_errors=True)
 
 
-@userge.on_cmd("logo", about={
+@userge.cmd("logo", about={
     'header': "Get a logo from brandcrowd",
     'usage': "{tr}logo text:keyword",
     'examples': [

@@ -28,7 +28,7 @@ async def _init() -> None:
             thumb_file.write(base64.b64decode(data['data']))
 
 
-@userge.on_cmd('sthumb', about={
+@userge.cmd('sthumb', about={
     'header': "Save thumbnail",
     'usage': "{tr}sthumb [reply to any photo]"})
 async def save_thumb_nail(message: Message):
@@ -56,7 +56,7 @@ async def save_thumb_nail(message: Message):
         await message.edit("Reply to a photo to save custom thumbnail", del_in=3)
 
 
-@userge.on_cmd('dthumb', about={'header': "Delete thumbnail"}, allow_channels=False)
+@userge.cmd('dthumb', about={'header': "Delete thumbnail"}, allow_channels=False)
 async def clear_thumb_nail(message: Message):
     """ delete thumbnail """
     await message.edit("`processing ...`")
@@ -71,7 +71,7 @@ async def clear_thumb_nail(message: Message):
         await message.delete()
 
 
-@userge.on_cmd('vthumb', about={'header': "View thumbnail"}, allow_channels=False)
+@userge.cmd('vthumb', about={'header': "View thumbnail"}, allow_channels=False)
 async def get_thumb_nail(message: Message):
     """ view current thumbnail """
     await message.edit("processing ...")

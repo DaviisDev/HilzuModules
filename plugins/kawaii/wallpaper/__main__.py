@@ -11,7 +11,7 @@ import requests
 from userge import userge, Message, pool
 
 
-@userge.on_cmd("wall", about={
+@userge.cmd("wall", about={
     'header': "Search Wallpaper",
     'flags': {
         '-l': "Limit of Wallpapers",
@@ -43,7 +43,7 @@ async def wall_(msg: Message):
         await msg.reply_sticker('CAADAQADmQADTusQR6fPCVZ3EhDoFgQ')
 
 
-@userge.on_cmd("mwall", about={
+@userge.cmd("mwall", about={
     'header': "Search Mobile Wallpaper",
     'flags': {
         '-l': "Limit of Wallpapers",

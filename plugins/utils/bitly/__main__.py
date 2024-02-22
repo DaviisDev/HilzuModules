@@ -15,7 +15,7 @@ from userge import userge, Message
 from userge.utils.exceptions import StopConversation
 
 
-@userge.on_cmd("bitly", about={
+@userge.cmd("bitly", about={
     'header': "Shorten Any Url using bit.ly",
     'usage': "{tr}bitly [link or reply]"}, allow_via_bot=False)
 async def bitly(msg: Message):
@@ -40,7 +40,7 @@ async def bitly(msg: Message):
         await msg.err("bot is down")
 
 
-@userge.on_cmd("isgd", about={
+@userge.cmd("isgd", about={
     'header': "Shorten Any Url using is.gd",
     'usage': "{tr}isgd [link or reply]"})
 async def is_gd(msg: Message):
@@ -60,7 +60,7 @@ async def is_gd(msg: Message):
         )
 
 
-@userge.on_cmd("statsisgd", about={
+@userge.cmd("statsisgd", about={
     'header': "Convert is.gd url into original URl.",
     'usage': "{tr}statsisgd [link or reply]"})
 async def stats_is_gd(msg: Message):

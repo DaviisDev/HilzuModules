@@ -27,7 +27,7 @@ async def init():
         FONTS_FILE_CHANNEL = data["name"]
 
 
-@userge.on_cmd("plet", about={
+@userge.cmd("plet", about={
     'header': "Get a Random RGB Sticker",
     'description': "Generates A RGB Sticker with provided text",
     'flags': {'-c': "change fonts channel"},

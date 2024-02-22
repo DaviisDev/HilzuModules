@@ -11,7 +11,7 @@ import random
 from userge import userge, Message
 
 
-@userge.on_cmd("belo", about={
+@userge.cmd("belo", about={
     'header': "Get a Logical Quote",
     'usage': "{tr}belo"}, allow_via_bot=False)
 async def being_logical(message: Message):
@@ -20,7 +20,7 @@ async def being_logical(message: Message):
     await message.edit(raw_message.text)
 
 
-@userge.on_cmd("tips", about={
+@userge.cmd("tips", about={
     'header': "Get a Pro Tip",
     'usage': "{tr}tips"}, allow_via_bot=False)
 async def pro_tips(message: Message):

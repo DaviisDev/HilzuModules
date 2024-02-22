@@ -18,7 +18,7 @@ from hydrogram import enums
 from userge import userge, Message
 
 
-@userge.on_cmd("livesubs", about={
+@userge.cmd("livesubs", about={
     'header': "Live Subscriber count for Public Groups and Channels",
     'usage': "{tr}livesubs [chat id]"})
 async def live_subs(msg: Message):

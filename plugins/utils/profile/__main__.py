@@ -25,7 +25,7 @@ PHOTO = config.Dynamic.DOWN_PATH + "profile_pic.jpg"
 USER_DATA = {}
 
 
-@userge.on_cmd("setname", about={
+@userge.cmd("setname", about={
     'header': "Update first, last name and username",
     'flags': {
         '-fname': "update only first name",
@@ -83,7 +83,7 @@ async def setname_(message: Message):
         await message.err("Invalid Args, Exiting...")
 
 
-@userge.on_cmd("bio", about={
+@userge.cmd("bio", about={
     'header': "Update bio, Maximum limit 70 characters",
     'flags': {
         '-delbio': "delete bio"},
@@ -110,7 +110,7 @@ async def bio_(message: Message):
             await message.edit("```\nMy Profile Bio is Successfully Updated ...```", del_in=3)
 
 
-@userge.on_cmd('setpfp', about={
+@userge.cmd('setpfp', about={
     'header': "Set profile picture",
     'usage': "{tr}setpfp [reply to any photo]"}, allow_via_bot=False)
 async def set_profile_picture(message: Message):
@@ -159,7 +159,7 @@ async def set_profile_picture(message: Message):
         await message.err("Reply to any photo or video to set profile pic...")
 
 
-@userge.on_cmd('vpf', about={
+@userge.cmd('vpf', about={
     'header': "View Profile of any user",
     'flags': {
         '-fname': "Print only first name",
@@ -240,7 +240,7 @@ async def view_profile(message: Message):
                 os.remove(PHOTO)
 
 
-@userge.on_cmd("delpfp", about={
+@userge.cmd("delpfp", about={
     'header': "Delete Profile Pics",
     'description': "Delete profile pic in one blow"
                    " [NOTE: May Cause Flood Wait]",
@@ -267,7 +267,7 @@ async def del_pfp(message: Message):
         await message.reply_sticker(sticker="CAADAQAD0wAD976IR_CYoqvCwXhyFgQ")
 
 
-@userge.on_cmd("clone", about={
+@userge.cmd("clone", about={
     'header': "Clone first name, last name, bio and profile picture of any user",
     'flags': {
         '-fname': "Clone only first name",
@@ -357,7 +357,7 @@ async def clone_(message: Message):
         await message.edit("```\nProfile is Successfully Cloned ...```", del_in=3)
 
 
-@userge.on_cmd("revert", about={
+@userge.cmd("revert", about={
     'header': "Returns original profile",
     'usage': "{tr}revert"}, allow_via_bot=False)
 async def revert_(message: Message):

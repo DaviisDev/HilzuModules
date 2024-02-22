@@ -17,7 +17,7 @@ import aiohttp
 from userge import userge, Message
 
 
-@userge.on_cmd(
+@userge.cmd(
     "azan",
     about={
         "header": "Islamic Prayers Time",

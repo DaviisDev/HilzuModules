@@ -18,7 +18,7 @@ from userge.utils import progress
 _T_LIMIT = 5242880
 
 
-@userge.on_cmd("telegraph", about={
+@userge.cmd("telegraph", about={
     'header': "Upload file to Telegra.ph's servers",
     'types': ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.webp', '.html', '.txt', '.py'],
     'usage': "reply {tr}telegraph to media or text : limit 5MB for media",

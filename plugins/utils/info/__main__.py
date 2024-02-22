@@ -27,7 +27,7 @@ GMUTE_USER_BASE = get_collection("GMUTE_USER")
 LOG = userge.getLogger(__name__)
 
 
-@userge.on_cmd("info", about={
+@userge.cmd("info", about={
     'header': "To check User's info",
     'usage': "{tr}info [for own info]\n"
              "{tr}info [Username | User Id]\n"

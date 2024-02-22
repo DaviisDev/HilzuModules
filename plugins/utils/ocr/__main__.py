@@ -16,7 +16,7 @@ from .. import ocr
 CHANNEL = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("ocr", about={
+@userge.cmd("ocr", about={
     'header': "use this to run ocr reader",
     'description': "get ocr result for images (file size limit = 1MB)",
     'examples': [

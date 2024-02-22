@@ -30,7 +30,7 @@ async def _init() -> None:
         IS_ENABLED = data['on']
 
 
-@userge.on_cmd(
+@userge.cmd(
     "autowaifu", about={
         'header': "Auto Waifu Protecc",
         'description': "enable or disable auto waifu protecc",

@@ -15,7 +15,7 @@ from googlesearch import search
 from userge import userge, Message, pool
 
 
-@userge.on_cmd("glyrics", about={
+@userge.cmd("glyrics", about={
     'header': "Genius Lyrics",
     'description': "Scrape Song Lyrics from Genius.com",
     'usage': "{tr}glyrics [Song Name]",

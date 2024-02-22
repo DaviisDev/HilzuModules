@@ -12,7 +12,7 @@ from datetime import datetime
 from userge import userge, Message
 
 
-@userge.on_cmd("calendar", about={
+@userge.cmd("calendar", about={
     'header': "Print calendar of any month of any year.",
     'usage': "{tr}calendar\n{tr}calendar [ year | month]",
     'examples': "{tr}calendar 2020 | 6"})

@@ -15,7 +15,7 @@ from hachoir.parser import createParser as CPR
 from userge import userge, Message
 
 
-@userge.on_cmd("tts", about={
+@userge.cmd("tts", about={
     'header': "Text To Speech",
     'examples': [
         "{tr}tts Userge", "{tr}tts en | Userge", "{tr}tts [reply to message]"

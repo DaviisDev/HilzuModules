@@ -113,7 +113,7 @@ async def appdrive_dl(url):
     return info_parsed
 
 
-@userge.on_cmd("gdtot", about={
+@userge.cmd("gdtot", about={
     'header': "parse gdtot links",
     'description': "you have to set <code>CRYPT</code>.\nget it by reading "
                    "<a href='https://t.me/UsergePlugins/129'>Help</a>",
@@ -151,7 +151,7 @@ async def gdtot(message: Message):
             await message.err("Unable To parse Link")
 
 
-@userge.on_cmd("appdrive", about={
+@userge.cmd("appdrive", about={
     'header': "parse appdrive links",
     'description': "you have to set <code>Required Vars</code>.\nget it by reading "
                    "<a href='https://t.me/UsergePlugins/129'>Help</a>",

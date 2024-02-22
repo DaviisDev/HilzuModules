@@ -50,7 +50,7 @@ async def _init() -> None:
         _note_updater(nt['chat_id'], nt['name'], nt['mid'], nt['global'])
 
 
-@userge.on_cmd(
+@userge.cmd(
     "notes", about={
         'header': "List all saved notes in current chat",
         'flags': {'-all': "List all saved notes in every chats"}},
@@ -76,7 +76,7 @@ async def view_notes(message: Message) -> None:
         await message.edit("`There are no saved notes in this chat`", del_in=5)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "delnote", about={
         'header': "Deletes a note by name",
         'flags': {
@@ -113,7 +113,7 @@ async def remove_note(message: Message) -> None:
     await message.edit(text=out, del_in=3)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "gtlnote", about={
         'header': "global note to local note",
         'description': "only sudos and owner can access local notes",
@@ -134,7 +134,7 @@ async def mv_to_local_note(message: Message) -> None:
     await message.edit(text=out, del_in=3)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "ltgnote", about={
         'header': "local note to global note",
         'description': "anyone can access global notes",
@@ -155,7 +155,7 @@ async def mv_to_global_note(message: Message) -> None:
     await message.edit(text=out, del_in=3)
 
 
-@userge.on_cmd(r"(?:#|get\s)(\S+)",
+@userge.cmd(r"(?:#|get\s)(\S+)",
                about={'header': "Gets a note by name",
                       'usage': "#[notename]\nget notename"},
                group=-1,
@@ -196,7 +196,7 @@ async def get_note(message: Message) -> None:
                                      reply_to_message_id=reply_to_message_id)
 
 
-@userge.on_cmd(
+@userge.cmd(
     r"addnote (\S+)(?:\s([\s\S]+))?", about={
         'header': "Adds a note by name",
         'options': {

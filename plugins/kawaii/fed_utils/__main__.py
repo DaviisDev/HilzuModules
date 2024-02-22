@@ -22,7 +22,7 @@ PROOF_CHANNEL = FBAN_LOG_CHANNEL if FBAN_LOG_CHANNEL else config.LOG_CHANNEL_ID
 CHANNEL = userge.getCLogger(__name__)
 SUDO = list(sudo.USERS)
 
-@userge.on_cmd(
+@userge.cmd(
     "addf",
     about={
         "header": "Add a chat to fed list",
@@ -50,7 +50,7 @@ async def addfed_(message: Message):
     await CHANNEL.log(msg_)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "delf",
     about={
         "header": "Remove a chat from fed list",
@@ -90,7 +90,7 @@ async def delfed_(message: Message):
     await CHANNEL.log(msg_)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "fban",
     about={
         "header": "Fban user",
@@ -233,7 +233,7 @@ async def fban_(message: Message):
 
 
 
-@userge.on_cmd(
+@userge.cmd(
     "unfban",
     about={
         "header": "Unfban user",
@@ -306,7 +306,7 @@ async def unfban_(message: Message):
     await userge.send_message(int(PROOF_CHANNEL), msg_)
 
 
-@userge.on_cmd(
+@userge.cmd(
     "listf",
     about={
         "header": "Fed Chat List",

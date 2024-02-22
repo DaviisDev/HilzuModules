@@ -44,7 +44,7 @@ async def _iter_whitelist() -> AsyncGenerator[Tuple[int, str], None]:
         yield _
 
 
-@userge.on_cmd("gban", about={
+@userge.cmd("gban", about={
     'header': "Globally Ban A User",
     'description': "Adds User to your GBan List. "
                    "Bans a Globally Banned user if they join or message. "
@@ -129,7 +129,7 @@ async def gban_user(message: Message):
     LOG.info("G-Banned %s", str(user_id))
 
 
-@userge.on_cmd("ungban", about={
+@userge.cmd("ungban", about={
     'header': "Globally Unban an User",
     'description': "Removes an user from your Gban List",
     'examples': "{tr}ungban [userid | reply]"},
@@ -181,7 +181,7 @@ async def ungban_user(message: Message):
     LOG.info("UnGbanned %s", str(user_id))
 
 
-@userge.on_cmd("glist", about={
+@userge.cmd("glist", about={
     'header': "Get a List of Gbanned Users",
     'description': "Get Up-to-date list of users Gbanned by you.",
     'examples': "Lol. Just type {tr}glist"},
@@ -196,7 +196,7 @@ async def list_gbanned(message: Message):
         f"**--Globally Banned Users List--**\n\n{msg}" if msg else "`glist empty!`")
 
 
-@userge.on_cmd("whitelist", about={
+@userge.cmd("whitelist", about={
     'header': "Whitelist a User",
     'description': "Use whitelist to add users to bypass API Bans",
     'usage': "{tr}whitelist [userid | reply to user]",
@@ -231,7 +231,7 @@ async def whitelist(message: Message):
     LOG.info("WhiteListed %s", str(user_id))
 
 
-@userge.on_cmd("rmwhite", about={
+@userge.cmd("rmwhite", about={
     'header': "Removes a User from Whitelist",
     'description': "Use it to remove users from WhiteList",
     'useage': "{tr}rmwhite [userid | reply to user]",
@@ -266,7 +266,7 @@ async def rmwhitelist(message: Message):
     LOG.info("WhiteListed %s", str(user_id))
 
 
-@userge.on_cmd("listwhite", about={
+@userge.cmd("listwhite", about={
     'header': "Get a List of Whitelisted Users",
     'description': "Get Up-to-date list of users WhiteListed by you.",
     'examples': "Lol. Just type {tr}listwhite"},

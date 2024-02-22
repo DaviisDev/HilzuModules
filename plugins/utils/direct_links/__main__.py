@@ -23,7 +23,7 @@ from userge import userge, Message, pool
 from userge.utils import humanbytes
 
 
-@userge.on_cmd("direct", about={
+@userge.cmd("direct", about={
     'header': "Generate a direct download link",
     'supported links': [
         'Google Drive', 'Cloud Mail', 'Yandex.Disk', 'AFH',

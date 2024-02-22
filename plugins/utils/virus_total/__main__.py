@@ -21,7 +21,7 @@ from userge.utils import progress, humanbytes
 from .. import virus_total
 
 
-@userge.on_cmd("scan", about={
+@userge.cmd("scan", about={
     'header': "Virus-Total module to check virus in document files.",
     'description': "scan virus in document files which are less then 32MB.",
     'usage': "{tr}scan [reply to document file]"})

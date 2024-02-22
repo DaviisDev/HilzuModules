@@ -13,7 +13,7 @@ from hydrogram.enums import ParseMode
 from userge import Message, userge
 
 
-@userge.on_cmd(
+@userge.cmd(
     "w",
     about={
         "header": "use this to get weather details",

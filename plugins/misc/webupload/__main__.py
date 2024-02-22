@@ -15,7 +15,7 @@ from userge import userge, Message, config
 from userge.utils import progress
 
 
-@userge.on_cmd("web ?(.+?|) (anonfiles|transfer|filebin|anonymousfiles"
+@userge.cmd("web ?(.+?|) (anonfiles|transfer|filebin|anonymousfiles"
                "|megaupload|bayfiles|vshare|0x0|fileio|ninja|infura|bashupload|cat)",
                about={
                    'header': "upload files to web",

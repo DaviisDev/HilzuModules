@@ -23,7 +23,7 @@ from userge import userge, Message, config
 from ..ud import URBAN_API_URL
 
 
-@userge.on_cmd("ud", about={
+@userge.cmd("ud", about={
     'header': "Searches Urban Dictionary for the query",
     'flags': {'-l': "limit : defaults to 1"},
     'usage': "{tr}ud [flag] [query]",

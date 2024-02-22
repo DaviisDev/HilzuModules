@@ -24,7 +24,7 @@ ytdl = get_custom_import_re(utube.YTDL_PYMOD)
 LOGGER = userge.getLogger(__name__)
 
 
-@userge.on_cmd("ytinfo", about={'header': "Get info from ytdl",
+@userge.cmd("ytinfo", about={'header': "Get info from ytdl",
                                 'description': 'Get information of the link without downloading',
                                 'examples': '{tr}ytinfo link',
                                 'others': 'To get info about direct links, use `{tr}head link`'})
@@ -56,7 +56,7 @@ __{uploader}__
         await message.edit(out)
 
 
-@userge.on_cmd("ytdl", about={
+@userge.cmd("ytdl", about={
     'header': "Download from youtube",
     'options': {'-a': 'select the audio u-id',
                 '-v': 'select the video u-id',
@@ -149,7 +149,7 @@ async def ytDown(message: Message):
         await message.edit(str(retcode))
 
 
-@userge.on_cmd("ytdes", about={'header': "Get the video description",
+@userge.cmd("ytdes", about={'header': "Get the video description",
                                'description': 'Get information of the link without downloading',
                                'examples': '{tr}ytdes link'})
 async def ytdes(message: Message):

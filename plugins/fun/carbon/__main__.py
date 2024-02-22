@@ -21,7 +21,7 @@ from .. import carbon
 CARBON = 'https://carbon.now.sh/?t={theme}&l={lang}&code={code}&bg={bg}'
 
 
-@userge.on_cmd("carbon", about={
+@userge.cmd("carbon", about={
     'header': "create a carbon",
     'flags': {
         '-r': "red -> 0-255",

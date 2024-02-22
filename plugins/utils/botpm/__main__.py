@@ -72,7 +72,7 @@ async def _init():
         BOT_PM = bool(found.get("data"))
 
 
-@userge.on_cmd("botpm", about={
+@userge.cmd("botpm", about={
     'header': "Bot Pm handlers like Livegram Bot.",
     'description': "You can use this command to enable/disable Bot Pm.\n"
                    "You can see all the settings of your bot after enabling "

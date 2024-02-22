@@ -13,7 +13,7 @@ import asyncio
 from userge import userge, Message
 
 
-@userge.on_cmd("hack$", about={"header": "kensar hacking animation"})
+@userge.cmd("hack$", about={"header": "kensar hacking animation"})
 async def hack_func(message: Message):
     user = await message.client.get_user_dict(message.from_user.id)
     heckerman = user["mention"]

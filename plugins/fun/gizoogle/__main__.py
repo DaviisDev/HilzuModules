@@ -13,7 +13,7 @@ import requests
 from userge import Message, userge
 
 
-@userge.on_cmd(
+@userge.cmd(
     "giz",
     about={
         "header": "gizoogle the text",
