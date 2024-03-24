@@ -21,7 +21,7 @@ from userge import Message, userge
 async def ln_user_(message: Message):
     """device desc"""
     device_ = message.input_str 
-    bot_ = "@vegadata_bot"
+    bot_ = "@WhiterKangBOT"
     async with userge.conversation(bot_, timeout=1000) as conv:
         try:
             await conv.send_message(f"!d {device_}")
